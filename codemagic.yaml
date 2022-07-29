@@ -8,7 +8,7 @@ workflows:
       groups:
         - keystore_credentials
       vars:
-        PACKAGE_NAME: "no.itverket.itdagene.reactnative.test"
+        PACKAGE_NAME: "no.itverket.itdagene.reactnative"
     scripts:
       - name: Set up keystore
         script: |
