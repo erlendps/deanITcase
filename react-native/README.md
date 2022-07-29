@@ -26,7 +26,7 @@ When you make changes to the code, the changes will automatically be reflected i
 
 ## Building an Android APK
 
-In order to install a real app on an Android device, we build using [Codemagic](https://codemagic.io).
+In order to install a real app on an Android device, we build using [Codemagic](https://reactnativeci.com/).
 
 Install Codemagic into your repository on GitHub. Configuration and keystore has already been added to the project (the password for the keystore will be given by the instructors), and you only need to [configure the environment variables](https://docs.codemagic.io/yaml-quick-start/building-a-react-native-app/#configuring-environment-variables) for your build, and change the package name.
 
