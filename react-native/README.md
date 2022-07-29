@@ -23,3 +23,17 @@ Also install the [Expo Go app](https://docs.expo.dev/get-started/installation/#2
 ## Start writing code
 
 When you make changes to the code, the changes will automatically be reflected in Expo Go.
+
+## Building an Android APK
+
+In order to install a real app on an Android device, we build using [Codemagic](https://codemagic.io).
+
+Install Codemagic into your repository on GitHub. Configuration and keystore has already been added to the project (the password for the keystore will be given by the instructors), and you only need to [configure the environment variables](https://docs.codemagic.io/yaml-quick-start/building-a-react-native-app/#configuring-environment-variables) for your build, and change the package name.
+
+Replace the default package name (`no.itverket.itdagene.reactnative`) to something unique for your team in these three files:
+
+- codemagic.yaml
+- app.json
+- build.gradle
+
+Add your emails to `codemagic.yaml` at `publishing -> email -> recipients` to receive the APK by mail when built.
