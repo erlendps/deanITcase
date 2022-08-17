@@ -14,7 +14,7 @@ From the [Expo installation guide](https://docs.expo.dev/get-started/installatio
 - Yarn
 - VS Code
 
-Also install the [Expo Go app](https://docs.expo.dev/get-started/installation/#2-expo-go-app-for-ios-and) on your iPhone or Android device.
+Also install the [Expo Go app](https://docs.expo.dev/get-started/installation/#2-expo-go-app-for-ios-and) on your iPhone or Android phone.
 
 ## Run the app
 
@@ -26,7 +26,7 @@ When you make changes to the code, the changes will automatically be reflected i
 
 ## Building an Android APK
 
-In order to install a real app on an Android device, we build using [Codemagic](https://reactnativeci.com/).
+In order to install a real app on an Android phone, we build an APK using [Codemagic](https://reactnativeci.com/).
 
 Install Codemagic into your repository on GitHub. Configuration and keystore has already been added to the project (the password for the keystore will be given by the instructors), and you only need to [configure the environment variables](https://docs.codemagic.io/yaml-quick-start/building-a-react-native-app/#configuring-environment-variables) for your build, and change the package name.
 
@@ -37,3 +37,5 @@ Replace the default package name (`no.itverket.itdagene.reactnative`) to somethi
 - build.gradle
 
 Add your emails to `codemagic.yaml` at `publishing -> email -> recipients` to receive the APK by mail when built.
+
+Install the APK on the phone.
