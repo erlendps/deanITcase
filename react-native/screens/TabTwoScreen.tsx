@@ -15,14 +15,14 @@ export const TabTwoScreen = ({ navigation }: RootTabScreenProps<"TabTwo">) => {
     return (
       <Image
         style={styles.image}
-        key={item.Name}
-        source={{ uri: item.Image }}
+        key={item.name}
+        source={{ uri: item.image }}
         resizeMode="cover"
       />
     );
   };
 
-  const keyExtractor = (employee: Employee) => employee.Name;
+  const keyExtractor = (employee: Employee) => employee.name;
 
   return (
     <View>

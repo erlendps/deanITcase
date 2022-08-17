@@ -21,7 +21,7 @@ export const TabOneScreen = ({ navigation }: RootTabScreenProps<"TabOne">) => {
         employeeResult.employees?.map((employee, index) => {
           return (
             <Button
-              title={employee.Name}
+              title={employee.name}
               onPress={gotoDetails(employee)}
               key={index}
             />

@@ -15,7 +15,7 @@ export const ModalScreen = ({
 
   return (
     <View style={styles.container}>
-      <Text>{employee.Name}</Text>
+      <Text>{employee.name}</Text>
 
       <Button title="Tilbake" onPress={goBack} />
     </View>
