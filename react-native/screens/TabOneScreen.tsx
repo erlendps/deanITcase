@@ -3,16 +3,16 @@ import { Button, Image, Linking, ScrollView, StyleSheet } from "react-native";
 
 import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
-import { useRetrieveEmployees } from "../hooks/useRetrieveEmployees";
+import { useFetchEmployees } from "../hooks/useFetchEmployees";
 import { RootTabScreenProps } from "../types";
 
 export default function TabOneScreen({
   navigation,
 }: RootTabScreenProps<"TabOne">) {
-  const employeeResult = useRetrieveEmployees();
+  const employeeResult = useFetchEmployees();
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView>
       {employeeResult.error ? (
         <Text style={styles.title}>{employeeResult.error}</Text>
       ) : employeeResult.loading ? (
@@ -35,11 +35,10 @@ export default function TabOneScreen({
 }
 
 const styles = StyleSheet.create({
-  container: {},
   imageContainer: {
+    flex: 1,
     flexWrap: "wrap",
     justifyContent: "space-between",
-    width: "100%",
     flexDirection: "row",
   },
   image: {
@@ -49,10 +48,5 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: "bold",
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
   },
 });
