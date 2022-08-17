@@ -1,8 +1,10 @@
 # itDAGENE 2022 mobil app case
 
-## React Native med Expo
+Choose which technology you want to use: React-Native/Expo or Flutter.
 
-TODO
+## React Native with Expo
+
+Skeleton app for react native, along with README for setup, can be found in folder [react-native](react-native).
 
 ## Flutter
 

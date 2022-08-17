@@ -1,0 +1,41 @@
+workflows:
+  react-native-android:
+    name: React Native Android
+    working_directory: react-native
+    max_build_duration: 120
+    instance_type: mac_mini
+    environment:
+      groups:
+        - keystore_credentials
+      vars:
+        PACKAGE_NAME: "no.itverket.itdagene.reactnative"
+    scripts:
+      - name: Set up keystore
+        script: |
+          echo $CM_KEYSTORE | base64 --decode > $CM_KEYSTORE_PATH
+      - name: Install npm dependencies
+        script: |
+          npm install
+      - name: Install Expo CLI and eject
+        script: |
+          npm install -g expo-cli
+          expo eject
+      - name: Set up app/build.gradle
+        script: |
+          mv ./support-files/build.gradle android/app
+      - name: Set Android SDK location
+        script: |
+          echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/local.properties"
+      - name: Build Android release
+        script: |
+          cd android && ./gradlew assembleRelease
+    artifacts:
+      - android/app/build/outputs/**/*.apk
+    publishing:
+      email:
+        recipients:
+          - abe@itverket.no
+          - bv@itverket.no
+        notify:
+          success: true
+          failure: false
