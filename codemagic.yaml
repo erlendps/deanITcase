@@ -39,3 +39,41 @@ workflows:
         notify:
           success: true
           failure: false
+
+  flutter-android:
+    name: Flutter Android
+    working_directory: flutter
+    max_build_duration: 120
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - name: Set up debug keystore
+        script: |
+          rm -f ~/.android/debug.keystore
+          keytool -genkeypair \
+            -alias androiddebugkey \
+            -keypass android \
+            -keystore ~/.android/debug.keystore \
+            -storepass android \
+            -dname 'CN=Android Debug,O=Android,C=US' \
+            -keyalg 'RSA' \
+            -keysize 2048 \
+            -validity 10000
+      - name: Get Flutter packages
+        script: |
+          flutter packages pub get
+      - name: Build APK with Flutter
+        script: |
+          flutter build apk --release
+    artifacts:
+      - build/**/outputs/apk/**/*.apk
+    publishing:
+      email:
+        recipients:
+          - abe@itverket.no
+          - bv@itverket.no
+        notify:
+          success: true
+          failure: false

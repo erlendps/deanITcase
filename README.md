@@ -8,4 +8,4 @@ Skeleton app for react native, along with README for setup, can be found in fold
 
 ## Flutter
 
-TODO
+Skeleton app for Flutter, along with README for setup, can be found in folder [flutter](flutter).
