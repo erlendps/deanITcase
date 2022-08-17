@@ -1,35 +1,58 @@
 import React from "react";
-import { ScrollView, StyleSheet } from "react-native";
+import { Dimensions, FlatList, Image, StyleSheet } from "react-native";
 
+import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
-import { useFetchEmployees } from "../hooks/useFetchEmployees";
+import { Employee, useFetchEmployees } from "../hooks/useFetchEmployees";
+import { RootTabScreenProps } from "../types";
 
-export default function TabTwoScreen() {
+const IMAGE_WIDTH = Dimensions.get("window").width;
+const IMAGE_HEIGHT = IMAGE_WIDTH * 1.3;
+
+export default function TabTwoScreen({
+  navigation,
+}: RootTabScreenProps<"TabTwo">) {
   const employeeResult = useFetchEmployees();
 
+  const renderEmployee = ({ item }: { item: Employee }) => {
+    return (
+      <Image
+        style={styles.image}
+        key={item.Name}
+        source={{ uri: item.Image }}
+        resizeMode="cover"
+      />
+    );
+  };
+
+  const keyExtractor = (employee: Employee) => employee.Name;
+
   return (
-    <ScrollView>
+    <View>
       {employeeResult.error ? (
         <Text style={styles.title}>{employeeResult.error}</Text>
       ) : employeeResult.loading ? (
         <Text style={styles.title}>{"Laster..."}</Text>
       ) : (
-        <View style={styles.name}>
-          {employeeResult.employees?.map((employee, index) => {
-            return <Text key={index}>{employee.Name}</Text>;
-          })}
-        </View>
+        <FlatList
+          data={employeeResult.employees}
+          horizontal={true}
+          renderItem={renderEmployee}
+          keyExtractor={keyExtractor}
+          snapToInterval={IMAGE_WIDTH}
+        />
       )}
-    </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  image: {
+    width: IMAGE_WIDTH,
+    height: IMAGE_HEIGHT,
+  },
   title: {
     fontSize: 20,
     fontWeight: "bold",
-  },
-  name: {
-    flex: 1,
   },
 });
