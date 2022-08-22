@@ -28,9 +28,11 @@ When you make changes to the code, the changes will automatically be reflected i
 
 In order to install a real app on an Android phone, we build an APK using [Codemagic](https://reactnativeci.com/).
 
-Install Codemagic into your repository on GitHub. Configuration and keystore has already been added to the project (the password for the keystore will be given by the instructors), and you only need to [configure the environment variables](https://docs.codemagic.io/yaml-quick-start/building-a-react-native-app/#configuring-environment-variables) for your build, and change the package name.
+Install Codemagic into your repository on GitHub. Configuration and keystore has been added to the project, and you need to [configure the environment variables](https://docs.codemagic.io/yaml-quick-start/building-a-react-native-app/#configuring-environment-variables) for your build.
 
-Replace the default package name (`no.itverket.itdagene.reactnative`) to something unique for your team in these three files:
+`CM_KEYSTORE_PASSWORD`, `CM_KEY_ALIAS` and `CM_KEY_PASSWORD` all have the same value: `itdagene`.
+
+You will also need to change the package name. Replace the default name (`no.itverket.itdagene.reactnative`) to something unique for your team, in these three files:
 
 - codemagic.yaml
 - app.json
