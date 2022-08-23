@@ -1,6 +1,6 @@
 # itDAGENE 2022 mobil app case
 
-Choose which technology you want to use: [React-Native](https://reactnative.dev) with [Expo](https://expo.dev) or [Flutter](https://flutter.dev).
+Choose which technology you want to use: [React-Native](https://reactnative.dev) with [Expo](https://expo.dev), or [Flutter](https://flutter.dev).
 
 ## React Native with Expo
 
