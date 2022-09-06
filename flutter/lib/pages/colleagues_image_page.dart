@@ -30,7 +30,9 @@ class ColleaguesImagePage extends StatelessWidget {
               children: _allColleaguesAsImageWidgets(imageUrls),
             );
           } else if (snapshot.hasError) {
-            return const Center(child: Text('Noe gikk galt ved API-kallet'));
+            return Center(
+              child: Text('Noe gikk galt ved API-kallet: ${snapshot.error}'),
+            );
           } else {
             return const Center(child: CircularProgressIndicator());
           }
