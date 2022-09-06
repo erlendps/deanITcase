@@ -12,6 +12,8 @@ interface EmployeeResponse {
   employees?: Employee[];
 }
 
+const apiToken = "todo_with_valid_token";
+
 export const useFetchEmployees = (): EmployeeResponse => {
   const [employees, setEmployees] = useState<Employee[] | undefined>(undefined);
   const [loading, setLoading] = useState(false);
@@ -21,8 +23,7 @@ export const useFetchEmployees = (): EmployeeResponse => {
     setLoading(true);
     setError(undefined);
 
-    const url =
-      "https://employee-image-provider.azurewebsites.net/api/fetchallemployeeimageurls?code=insert_real_api_token_here";
+    const url = `https://employee-image-provider.azurewebsites.net/api/fetchallemployeeimageurls?code=${apiToken}`;
     fetch(url)
       .then((response) => {
         response.json().then((json) => {

@@ -20,11 +20,13 @@ Also install the [Expo Go app](https://docs.expo.dev/get-started/installation/#2
 
 [Start the expo development server](https://docs.expo.dev/get-started/create-a-new-app/#starting-the-development-server) from the terminal, and [scan the QR code from the terminal output](https://docs.expo.dev/get-started/create-a-new-app/#opening-the-app-on-your-phonetablet) on your phone.
 
-Make sure both your phone and computer are connected to the same Wi-Fi network, and that your computer allows inbound connections on port 19000. 
+Make sure both your phone and computer are connected to the same Wi-Fi network, and that your computer allows inbound connections on port 19000.
 
 ## Start writing code
 
 When you make changes to the code, the changes will automatically be reflected in Expo Go.
+
+Get a valid API token from from of the case instructors, and insert it into `apiToken` constant in the `useFetchEmployees.ts` file.
 
 ## Building an Android APK
 
