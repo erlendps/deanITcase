@@ -30,6 +30,7 @@ export const useFetchEmployees = (): EmployeeResponse => {
           const employees: Employee[] = json.map((employee: any) => {
             return {
               name: employee.Name,
+              sex: employee.Sex,
               originalUrl: employee.Image,
               image: cleanUrl(employee.Image),
             } as Employee;
