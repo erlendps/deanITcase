@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 export interface Employee {
   name: string;
+  gender: "male" | "female";
   image: string;
   originalUrl: string;
 }
@@ -30,7 +31,7 @@ export const useFetchEmployees = (): EmployeeResponse => {
           const employees: Employee[] = json.map((employee: any) => {
             return {
               name: employee.Name,
-              sex: employee.Sex,
+              gender: employee.Gender,
               originalUrl: employee.Image,
               image: cleanUrl(employee.Image),
             } as Employee;

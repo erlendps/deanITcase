@@ -13,12 +13,15 @@ export const TabTwoScreen = ({ navigation }: RootTabScreenProps<"TabTwo">) => {
 
   const renderEmployee = ({ item }: { item: Employee }) => {
     return (
-      <Image
-        style={styles.image}
-        key={item.name}
-        source={{ uri: item.image }}
-        resizeMode="cover"
-      />
+      <View style={{ flexDirection: "column" }}>
+        <Image
+          style={styles.image}
+          key={item.name}
+          source={{ uri: item.image }}
+          resizeMode="cover"
+        />
+        <Text> {item.gender}</Text>
+      </View>
     );
   };
 
