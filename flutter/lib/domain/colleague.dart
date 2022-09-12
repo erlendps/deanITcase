@@ -1,18 +1,18 @@
 class Colleague {
   final String name;
   final String imageUrl;
-  final String? sex;
+  final String? gender;
 
-  Colleague(this.name, this.imageUrl, this.sex);
+  Colleague(this.name, this.imageUrl, this.gender);
 
   Colleague.fromJson(Map<String, dynamic> json)
       : name = json['Name'],
         imageUrl = json['Image'],
-        sex = json['Sex'];
+        gender = json['Gender'];
 
   Map<String, dynamic> toJson() => {
     'Name': name,
     'Image': imageUrl,
-    'Sex': sex,
+    'Gender': gender,
   };
 }
