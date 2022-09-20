@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {StyleSheet, TextInput, Text, View} from "react-native";
 import { isName } from "../hooks/names";
+import { NotFoundScreen } from "../screens/NotFoundScreen";
 const FONT_SIZE = 40
 
 export const GuessInput = (props: {onInput: (guess: string) => void, onMessage: (msg: string) => void, secret: string, hint: string}) => {
@@ -33,7 +34,7 @@ export const GuessInput = (props: {onInput: (guess: string) => void, onMessage: 
   return (
     <View style={styles.view}>
       <Text style={placeholderStyle()}>{props.hint}</Text>
-      <TextInput autoComplete='off' value={text} style={inputStyle()} onChangeText={setText} onSubmitEditing={onSubmit} blurOnSubmit={false} maxLength={props.secret.length}/>
+      <TextInput underlineColorAndroid="transparent" autoComplete='off' value={text} style={inputStyle()} onChangeText={setText} onSubmitEditing={onSubmit} blurOnSubmit={false} maxLength={props.secret.length}/>
     </View>
   );
 };
