@@ -13,6 +13,7 @@ interface EmployeeResponse {
   employees?: Employee[];
 }
 
+// TODO: put in env or something
 const apiToken = "mKJCxaVuYh7BKL1BPlF6IKnwpWV7OILSBBLftRLa4XRd8m9CZWtBpg==";
 
 export const useFetchEmployees = (): EmployeeResponse => {

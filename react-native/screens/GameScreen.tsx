@@ -18,6 +18,8 @@ export const GameScreen = ({
     originalUrl: ""
   });
 
+  const [score, setScore] = useState(0);
+
   useEffect(() => {
     setRandomEmployee()
   }, [employees])
@@ -27,7 +29,16 @@ export const GameScreen = ({
     setEmployee(employees[Math.floor( Math.random()*employees.length)])
   }
 
-  return employee ? <GuessEmployee employee={employee as Employee} onCorrect={setRandomEmployee}></GuessEmployee> 
+  const setNewScore = (scoreToAdd: number) => {
+    setScore(score + scoreToAdd);
+  }
+
+  const handleCorrect = () => {
+    setNewScore(100);
+    setRandomEmployee();
+  }
+
+  return employee ? <GuessEmployee employee={employee as Employee} onCorrect={handleCorrect}></GuessEmployee> 
   :<View></View>
 };
 
