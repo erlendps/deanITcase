@@ -44,7 +44,6 @@ export const GuessEmployee = (props: {
       // Correct guess
       setHint(name());
       props.onCorrect(calculateScore());
-<<<<<<< HEAD
       return true
     }
     // Wrong guess
@@ -58,11 +57,6 @@ export const GuessEmployee = (props: {
     setHint((hint) => {
       return hint.slice(0, index) + name()[index] + hint.slice(index + 1);
     });
-=======
-    
-    }
-    
->>>>>>> 4271eb8 (Did some work on AI)
     setAttempts((attempts) => attempts + 1);
     return false
   };
