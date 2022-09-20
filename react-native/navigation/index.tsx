@@ -21,6 +21,7 @@ import { NotFoundScreen } from "../screens/NotFoundScreen";
 import { TabTwoScreen } from "../screens/TabTwoScreen";
 import { TabOneScreen } from "../screens/TabOneScreen";
 import { WelcomeScreen } from "../screens/WelcomeScreen";
+import { GameScreen } from "../screens/GameScreen";
 import {
   RootStackParamList,
   RootTabParamList,
@@ -54,7 +55,7 @@ function RootNavigator() {
     <Stack.Navigator>
       <Stack.Screen
         name="Root"
-        component={WelcomeScreen}
+        component={BottomTabNavigator}
         options={{ headerShown: false }}
       />
       <Stack.Screen
@@ -98,6 +99,22 @@ function BottomTabNavigator() {
         component={TabTwoScreen}
         options={{
           title: "Eksempel 2",
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Welcome"
+        component={WelcomeScreen}
+        options={{
+          title: "Welcome",
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="GameScreen"
+        component={GameScreen}
+        options={{
+          title: "Game Screen",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />

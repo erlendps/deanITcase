@@ -7,11 +7,15 @@ import { RootTabScreenProps } from "../types";
 export const WelcomeScreen = ({
   navigation,
 }: RootTabScreenProps<"Welcome">) => {
+
+  const handlePress = () => {
+    navigation.navigate("GameScreen");
+  }
   return (
     <View style={styles.container}>
       <AppButton
         title={"Play Now!"}
-        onPress={() => {}}
+        onPress={handlePress}
         buttonStyle={styles.playButton}
         textStyle={styles.textStyle}
       ></AppButton>
