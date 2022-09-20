@@ -4,6 +4,7 @@ import { RootStackScreenProps } from "../types";
 import { Employee, useFetchEmployees } from "../hooks/useFetchEmployees";
 import { useEffect, useState } from "react"
 import { GuessEmployee } from "../components/GuessEmployee";
+import { Score } from "../components/Score";
 
 export const GameScreen = ({
   navigation,
@@ -33,12 +34,17 @@ export const GameScreen = ({
     setScore(score + scoreToAdd);
   }
 
-  const handleCorrect = () => {
-    setNewScore(100);
+  const handleCorrect = (scoreToAdd: number) => {
+    setNewScore(scoreToAdd);
     setRandomEmployee();
   }
 
-  return employee ? <GuessEmployee employee={employee as Employee} onCorrect={handleCorrect}></GuessEmployee> 
+  return employee ? (
+    <>
+      <Score score={score}/> 
+      <GuessEmployee employee={employee as Employee} onCorrect={handleCorrect}></GuessEmployee>
+    </>
+  )
   :<View></View>
 };
 
