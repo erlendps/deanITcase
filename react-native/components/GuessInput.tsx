@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
     letterSpacing: 10,
     margin: 10,
     padding: 10,
-    border: '1px solid black',
     borderRadius: 0,
     display: 'flex',
     flexDirection: 'row',
@@ -62,10 +61,9 @@ const styles = StyleSheet.create({
   },
   placeholder: {
     letterSpacing: 10,
-    marginTop: -FONT_SIZE - 30 - 2,
+    marginTop: -FONT_SIZE - 30,
     marginLeft: 10,
     marginRight: 10,
-    borderRadius: 0,
     padding: 10,
     color: 'rgba(0, 0, 0, 0.35)',
     display: 'flex',
@@ -74,9 +72,10 @@ const styles = StyleSheet.create({
     fontFamily: 'courier', // changing font will break it
     zIndex: -3,
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    borderRadius: 5,
   },
   view : {
-    marginTop: -FONT_SIZE - 30 - 5,
+    marginTop: -FONT_SIZE - 30 - 10,
     margin: 0,
     padding: 0,
     display: 'flex',
