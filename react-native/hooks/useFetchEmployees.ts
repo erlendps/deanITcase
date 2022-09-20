@@ -13,7 +13,7 @@ interface EmployeeResponse {
   employees?: Employee[];
 }
 
-const apiToken = "todo_replace_with_valid_token";
+const apiToken = "mKJCxaVuYh7BKL1BPlF6IKnwpWV7OILSBBLftRLa4XRd8m9CZWtBpg==";
 
 export const useFetchEmployees = (): EmployeeResponse => {
   const [employees, setEmployees] = useState<Employee[] | undefined>(undefined);
