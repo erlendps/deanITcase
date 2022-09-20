@@ -16,5 +16,6 @@ const styles = StyleSheet.create({
     fontSize: FONT_SIZE,
     zIndex: 3,
     color: "#fff",
+    paddingTop: 5,
   },
 });
