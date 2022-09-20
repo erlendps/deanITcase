@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     fontSize: FONT_SIZE,
     fontFamily: 'space-mono',
     elevation: 2,
+    shadowColor: 'rgba(0, 0, 0, 0)',
   },
   placeholder: {
     color: 'rgba(0, 0, 0, 0.35)',
