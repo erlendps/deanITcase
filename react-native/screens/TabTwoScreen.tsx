@@ -4,8 +4,8 @@ import { Text, View } from "../components/Themed";
 import { Employee, useFetchEmployees } from "../hooks/useFetchEmployees";
 import { RootTabScreenProps } from "../types";
 
-const IMAGE_WIDTH = Dimensions.get("window").width;
-const IMAGE_HEIGHT = IMAGE_WIDTH * 1.3;
+const IMAGE_WIDTH = 100//Dimensions.get("window").width;
+const IMAGE_HEIGHT = 100//IMAGE_WIDTH * 1.3;
 
 export const TabTwoScreen = ({ navigation }: RootTabScreenProps<"TabTwo">) => {
   const employeeResult = useFetchEmployees();
@@ -19,7 +19,7 @@ export const TabTwoScreen = ({ navigation }: RootTabScreenProps<"TabTwo">) => {
           source={{ uri: item.image }}
           resizeMode="cover"
         />
-        <Text> {item.gender}</Text>
+        <Text> {item.name}</Text>
       </View>
     );
   };

@@ -36,12 +36,32 @@ export const useFetchEmployees = (): EmployeeResponse => {
               image: cleanUrl(employee.Image),
             } as Employee;
           });
-
           setEmployees(employees);
         });
       })
       .catch((error) => {
-        setError("Kunne ikke laste inn data");
+        setEmployees([
+          {
+            name: 'Michael', 
+            gender: 'male', 
+            originalUrl: 'https://www.picng.com/upload/man/png_man_38385.png', 
+            image: cleanUrl('https://www.picng.com/upload/man/png_man_38385.png') 
+          } as Employee,
+          {
+            name: 'Lisa', 
+            gender: 'female', 
+            originalUrl: 'https://png.pngitem.com/pimgs/s/507-5077806_transparent-women-professional-business-woman-transparent-background-hd.png', 
+            image: cleanUrl('https://png.pngitem.com/pimgs/s/507-5077806_transparent-women-professional-business-woman-transparent-background-hd.png') 
+          } as Employee,
+          {
+            name: 'Michaelish', 
+            gender: 'male', 
+            originalUrl: 'https://www.picng.com/upload/man/png_man_38385.png', 
+            image: cleanUrl('https://www.picng.com/upload/man/png_man_38385.png') 
+          } as Employee,
+        ])
+        // TODO: Re-add error
+        //setError("Kunne ikke laste inn data");
       })
       .finally(() => {
         setLoading(false);
