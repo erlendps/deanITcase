@@ -8,7 +8,7 @@ workflows:
       groups:
         - keystore_credentials
       vars:
-        PACKAGE_NAME: "dean.it.case"
+        PACKAGE_NAME: "dean.itcase"
     scripts:
       - name: Set up keystore
         script: |
