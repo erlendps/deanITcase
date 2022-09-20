@@ -32,8 +32,8 @@ export const GuessInput = (props: {onInput: (guess: string) => void, onMessage: 
 
   return (
     <View style={styles.view}>
-      <TextInput autoComplete='off' value={text} style={inputStyle()} onChangeText={setText} onSubmitEditing={onSubmit} blurOnSubmit={false} maxLength={props.secret.length}/>
       <Text style={placeholderStyle()}>{props.hint}</Text>
+      <TextInput autoComplete='off' value={text} style={inputStyle()} onChangeText={setText} onSubmitEditing={onSubmit} blurOnSubmit={false} maxLength={props.secret.length}/>
     </View>
   );
 };
@@ -47,10 +47,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     fontSize: FONT_SIZE,
     fontFamily: 'space-mono',
+    elevation: 2,
   },
   placeholder: {
     color: 'rgba(0, 0, 0, 0.35)',
-    zIndex: -3,
+    elevation: 1,
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
   },
   view : {

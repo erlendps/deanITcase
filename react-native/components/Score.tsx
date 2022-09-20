@@ -16,7 +16,6 @@ const styles = StyleSheet.create({
   score: {
     textAlign: "center",
     fontSize: FONT_SIZE,
-    zIndex: 3,
     color: "#fff",
     paddingTop: 5,
     margin: 10,
