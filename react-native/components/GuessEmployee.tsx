@@ -1,16 +1,14 @@
-import { StyleSheet, Image, Dimensions } from "react-native";
-
+import { StyleSheet, ImageBackground, Dimensions, FlatList } from "react-native";
 import { Text, View } from "./Themed";
 import { Employee } from "../hooks/useFetchEmployees";
 import { GuessInput } from "./GuessInput";
 import { useEffect, useState } from "react"
 
-const FONT_SIZE = 48;
-
 export const GuessEmployee = (props: {employee: Employee, onCorrect: (scoreToAdd: number) => void}) => {
   const [revealOrder, setRevealOrder] = useState([0])
   const [hint, setHint] = useState('')
   const [attempts, setAttempts] = useState(0)
+  const [messages, setMessages] = useState([''])
 
   const name = () => props.employee.name.split(" ")[0].toLowerCase();
 
@@ -19,6 +17,7 @@ export const GuessEmployee = (props: {employee: Employee, onCorrect: (scoreToAdd
       [...Array(name().length).keys()].sort(() => Math.random() - 0.5))
     setHint('_'.repeat(name().length))
     setAttempts(0);
+    setMessages([])
   }, [props.employee])
 
   const calculateScore = () => {
@@ -40,22 +39,28 @@ export const GuessEmployee = (props: {employee: Employee, onCorrect: (scoreToAdd
     setAttempts((attempts) => attempts + 1)
   }
 
+  const onMessage = (msg: string) => {
+    setMessages((messages) => [msg, ...messages])
+  }
+
   return (
     <View style={styles.container}>
-      <Image
+      <ImageBackground
         style={styles.image}
         key={name()}
         source={{ uri: props.employee.image }}
         resizeMode="cover"
-      />
-      {/*<Text style={styles.hint}>{hint}</Text>*/}
-      <GuessInput onInput={onInput} secret={name()} hint={hint} />
-      {/* <Text>Attempts: {attempts}</Text> */}
+      >
+        <GuessInput onInput={onInput} secret={name()} hint={hint} onMessage={onMessage} />
+      </ImageBackground>
+      <FlatList
+        data={messages}
+        renderItem={({item}) => <Text style={styles.message}>{item}</Text>}
+      ></FlatList>
     </View>
   );
 };
 
-const HINT_PADDING = 10;
 const styles = StyleSheet.create({
   container: {
     width: Dimensions.get('window').width,
@@ -67,5 +72,8 @@ const styles = StyleSheet.create({
   image: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').width,
+  },
+  message: {
+    color: 'green' 
   },
 });
