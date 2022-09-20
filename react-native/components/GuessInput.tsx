@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 16,
     padding: 10,
-    borderRadius: 16,
+    borderRadius: 10,
     fontSize: FONT_SIZE,
     fontFamily: 'courier',
   },
@@ -52,7 +52,6 @@ const styles = StyleSheet.create({
     color: 'rgba(0, 0, 0, 0.35)',
     zIndex: -3,
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
-    borderRadius: 5,
   },
   view : {
     position: 'absolute',
