@@ -24,9 +24,14 @@ Make sure both your phone and computer are connected to the same Wi-Fi network, 
 
 ## Start writing code
 
+Get a valid API token from one of the case instructors, and insert it into `apiToken` constant in the `useFetchEmployees.ts` file.
+
 When you make changes to the code, the changes will automatically be reflected in Expo Go.
 
-Get a valid API token from from of the case instructors, and insert it into `apiToken` constant in the `useFetchEmployees.ts` file.
+## Debugging code
+
+[Many options for debugging is available](https://medium.com/@abdulrahmanhashem/8-ways-to-debug-your-react-native-app-with-expo-the-comprehensive-guide-538655cf1684). The no-setup way is using
+[Chrome Dev Tools](https://medium.com/@abdulrahmanhashem/8-ways-to-debug-your-react-native-app-with-expo-the-comprehensive-guide-538655cf1684#7335).
 
 ## Building an Android APK
 
