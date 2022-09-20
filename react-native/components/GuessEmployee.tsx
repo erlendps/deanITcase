@@ -4,7 +4,9 @@ import { Text, View } from "./Themed";
 import { Employee } from "../hooks/useFetchEmployees";
 import { GuessInput } from "./GuessInput";
 import { useEffect, useState } from "react"
-
+import { withTheme } from "@emotion/react";
+import { padding } from "@mui/system";
+const FONT_SIZE = 48;
 export const GuessEmployee = (props: {employee: Employee, onCorrect: () => void}) => {
   const [revealOrder, setRevealOrder] = useState([0])
   const [hint, setHint] = useState('')
@@ -19,10 +21,17 @@ export const GuessEmployee = (props: {employee: Employee, onCorrect: () => void}
     setAttempts(0);
   }, [props.employee])
 
+  const calculateScore = () => {
+    const guessLength = name().length - attempts;
+    let score = guessLength * 100 + 300;
+    score += name().length * 20;
+    return score;
+  }
+
   const onInput = (guess: string) => {
     if (guess.toLowerCase() == name()) {
-      setHint(name())
-      props.onCorrect()
+      setHint(name());
+      props.onCorrect();
     }
     const index = revealOrder[attempts]
     setHint((hint) => {
@@ -39,13 +48,16 @@ export const GuessEmployee = (props: {employee: Employee, onCorrect: () => void}
         source={{ uri: props.employee.image }}
         resizeMode="cover"
       />
-      <Text>Attempts: {attempts}</Text>
       <Text style={styles.hint}>{hint}</Text>
-      <GuessInput onInput={onInput} secret={name()}></GuessInput>
+
+      <Text>Attempts: {attempts}</Text>
+      
+      <GuessInput onInput={onInput} secret={name()} hint={hint}> </GuessInput>
     </View>
   );
 };
 
+const HINT_PADDING = 10;
 const styles = StyleSheet.create({
   container: {
     width: Dimensions.get('window').width,
@@ -58,7 +70,12 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').width,
   },
   hint: {
-    letterSpacing: 3,
-    padding: 10
+    letterSpacing: 10,
+    padding: HINT_PADDING,
+    marginTop: -1*FONT_SIZE - 2*HINT_PADDING,
+    zIndex: 3,
+    fontSize: FONT_SIZE,
+    fontFamily: 'courier',
+    backgroundColor: 'rgba(255, 255, 255, 0.5)'
   }
 });

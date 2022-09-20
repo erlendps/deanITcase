@@ -51,7 +51,7 @@ function RootNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Root"
+        name="Welcome"
         component={WelcomeScreen}
         options={{ headerShown: false }}
       />
