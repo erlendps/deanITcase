@@ -1,5 +1,4 @@
-import { StatusBar } from "expo-status-bar";
-import { Button, Platform, StyleSheet } from "react-native";
+import { Button, StyleSheet } from "react-native";
 
 import { Text, View } from "../components/Themed";
 import { RootStackScreenProps } from "../types";

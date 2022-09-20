@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import { useRef } from "react";
-import {StyleSheet, TextInput, Text, View} from "react-native";
+import {StyleSheet, TextInput} from "react-native";
+
 const FONT_SIZE = 32
+
 export const GuessInput = (props: {onInput: (guess: string) => void, secret: string}) => {
 
   let inputRef = React.createRef<TextInput>();
