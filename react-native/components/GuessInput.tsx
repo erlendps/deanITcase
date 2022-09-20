@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     margin: 10,
     padding: 10,
     border: '1px solid black',
-    borderRadius: 2,
+    borderRadius: 0,
     display: 'flex',
     flexDirection: 'row',
     fontSize: FONT_SIZE,
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   },
   placeholder: {
     letterSpacing: 10,
-    marginTop: -FONT_SIZE - 30 - 7,
+    marginTop: -FONT_SIZE - 30 - 2,
     marginLeft: 10,
     marginRight: 10,
     borderRadius: 2,
