@@ -18,7 +18,7 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "no.itverket.itdagene.reactnative"
+      "bundleIdentifier": "deanITcase"
     },
     "android": {
       "package": "no.itverket.itdagene.reactnative",
