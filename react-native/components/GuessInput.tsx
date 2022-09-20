@@ -1,17 +1,21 @@
 import React, { useEffect } from "react";
-import {StyleSheet, TextInput} from "react-native";
-
-const FONT_SIZE = 32
-
+import { useRef } from "react";
+import {StyleSheet, TextInput, Text, View} from "react-native";
+import { isName } from "../hooks/names";
+const FONT_SIZE = 48
 export const GuessInput = (props: {onInput: (guess: string) => void, secret: string}) => {
 
   let inputRef = React.createRef<TextInput>();
   const checkText = (guess: string) => {
     if (guess.length == props.secret.length) {
-      props.onInput(guess);
       
-      // Clear TextInput
-      inputRef.current!.clear();
+      if (isName(guess)) {
+        props.onInput(guess);
+        // Clear TextInput
+        inputRef.current!.clear();
+      }
+      
+      
     }
   }
 
