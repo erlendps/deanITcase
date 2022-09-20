@@ -34,7 +34,7 @@ export const GuessInput = (props: {onInput: (guess: string) => void, secret: str
   const inputStyle = () => StyleSheet.flatten([styles.input, {width: (10 + 0.61 * FONT_SIZE) * props.secret.length + 20}])
 
   return (<View style={styles.view}>
-    <TextInput value={text} style={inputStyle()} onChangeText={setText} onSubmitEditing={onSubmit} blurOnSubmit={false} maxLength={props.secret.length}/>
+    <TextInput autoComplete='off' value={text} style={inputStyle()} onChangeText={setText} onSubmitEditing={onSubmit} blurOnSubmit={false} maxLength={props.secret.length}/>
     <Text style={styles.placeholder}>{props.hint}</Text>
     <FlatList
       data={messages}
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     marginTop: -FONT_SIZE - 30 - 2,
     marginLeft: 10,
     marginRight: 10,
-    borderRadius: 2,
+    borderRadius: 0,
     padding: 10,
     color: 'rgba(0, 0, 0, 0.35)',
     display: 'flex',
