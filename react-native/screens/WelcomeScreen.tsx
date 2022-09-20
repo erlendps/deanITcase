@@ -1,4 +1,4 @@
-import { Button, ScrollView, StyleSheet } from "react-native";
+import { Dimensions, ScrollView, StyleSheet } from "react-native";
 import { Text, View } from "../components/Themed";
 import { AppButton } from "../components/AppButton";
 import { Employee, useFetchEmployees } from "../hooks/useFetchEmployees";
@@ -41,6 +41,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#262626",
-    minHeight: "100vh",
+    minHeight: Dimensions.get("window").height,
   },
 });
