@@ -7,12 +7,19 @@ export const Score = (props: {score: number}) => {
   return (
     <View>
       <Text style={styles.score}>Your Score: {props.score}</Text>
-      <ItNerd />
+      <View style={styles.absolute}>
+        <ItNerd />
+      </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
+  absolute: {
+    position: 'absolute',
+    elevation: 25,
+    top: 50,
+  },
   score: {
     textAlign: "center",
     fontSize: FONT_SIZE,

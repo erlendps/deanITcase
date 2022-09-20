@@ -63,6 +63,7 @@ export const GuessEmployee = (props: {employee: Employee, onCorrect: (scoreToAdd
 
 const styles = StyleSheet.create({
   container: {
+    elevation: 0,
     width: Dimensions.get('window').width,
     display: 'flex',
     alignItems: "center",
@@ -70,6 +71,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#262626"
   },
   image: {
+    elevation: 0,
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').width,
   },
