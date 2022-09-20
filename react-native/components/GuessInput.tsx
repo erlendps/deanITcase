@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   },
   placeholder: {
     letterSpacing: 10,
-    marginTop: -FONT_SIZE - 30,
+    marginTop: -FONT_SIZE - 30 - 7,
     marginLeft: 10,
     marginRight: 10,
     borderRadius: 2,

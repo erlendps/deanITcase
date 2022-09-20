@@ -4,9 +4,9 @@ import { Text, View } from "./Themed";
 import { Employee } from "../hooks/useFetchEmployees";
 import { GuessInput } from "./GuessInput";
 import { useEffect, useState } from "react"
-import { withTheme } from "@emotion/react";
-import { padding } from "@mui/system";
+
 const FONT_SIZE = 48;
+
 export const GuessEmployee = (props: {employee: Employee, onCorrect: (scoreToAdd: number) => void}) => {
   const [revealOrder, setRevealOrder] = useState([0])
   const [hint, setHint] = useState('')
@@ -49,10 +49,8 @@ export const GuessEmployee = (props: {employee: Employee, onCorrect: (scoreToAdd
         resizeMode="cover"
       />
       {/*<Text style={styles.hint}>{hint}</Text>*/}
-      
       <GuessInput onInput={onInput} secret={name()} hint={hint} />
-
-      <Text>Attempts: {attempts}</Text>
+      {/* <Text>Attempts: {attempts}</Text> */}
     </View>
   );
 };
