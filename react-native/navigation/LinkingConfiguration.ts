@@ -13,7 +13,7 @@ const linking: LinkingOptions<RootStackParamList> = {
   prefixes: [Linking.makeUrl('/')],
   config: {
     screens: {
-      Root: {
+      /*Root: {
         screens: {
           Welcome: {
             screens: {
@@ -26,7 +26,9 @@ const linking: LinkingOptions<RootStackParamList> = {
             },
           },
         },
-      },
+      },*/
+      Welcome: 'Welcome',
+      GameScreen: 'GameScreen',
       Modal: 'modal',
       NotFound: '*',
     },
