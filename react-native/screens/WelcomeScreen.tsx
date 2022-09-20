@@ -9,7 +9,7 @@ export const WelcomeScreen = ({
 }: RootTabScreenProps<"Welcome">) => {
 
   const handlePress = () => {
-    navigation.navigate("GameScreen");
+    navigation.navigate('GameScreen');
   }
   return (
     <View style={styles.container}>

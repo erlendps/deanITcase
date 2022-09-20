@@ -16,10 +16,7 @@ import { ColorSchemeName, Pressable } from "react-native";
 
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
-import { ModalScreen } from "../screens/ModalScreen";
 import { NotFoundScreen } from "../screens/NotFoundScreen";
-import { TabTwoScreen } from "../screens/TabTwoScreen";
-import { TabOneScreen } from "../screens/TabOneScreen";
 import { WelcomeScreen } from "../screens/WelcomeScreen";
 import { GameScreen } from "../screens/GameScreen";
 import {
@@ -55,7 +52,12 @@ function RootNavigator() {
     <Stack.Navigator>
       <Stack.Screen
         name="Root"
-        component={BottomTabNavigator}
+        component={WelcomeScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="GameScreen"
+        component={GameScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen
@@ -63,9 +65,6 @@ function RootNavigator() {
         component={NotFoundScreen}
         options={{ title: "Oops!" }}
       />
-      <Stack.Group screenOptions={{ presentation: "modal" }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
-      </Stack.Group>
     </Stack.Navigator>
   );
 }
@@ -81,27 +80,11 @@ function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Welcome"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
       }}
     >
-      <BottomTab.Screen
-        name="TabOne"
-        component={TabOneScreen}
-        options={{
-          title: "Eksempel 1",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoScreen}
-        options={{
-          title: "Eksempel 2",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
-      />
       <BottomTab.Screen
         name="Welcome"
         component={WelcomeScreen}

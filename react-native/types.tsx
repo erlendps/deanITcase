@@ -17,16 +17,15 @@ export type RootStackParamList = {
   Modal: {
     employee: Employee;
   };
+  
   NotFound: undefined;
-  Game: {}
+  GameScreen: {}
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
   NativeStackScreenProps<RootStackParamList, Screen>;
 
 export type RootTabParamList = {
-  TabOne: undefined;
-  TabTwo: undefined;
   GameScreen: undefined;
   Welcome: undefined;
 };

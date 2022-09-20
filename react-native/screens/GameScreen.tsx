@@ -1,14 +1,14 @@
 import { StyleSheet, Image } from "react-native";
 import { Text, View } from "../components/Themed";
 import { RootStackScreenProps } from "../types";
-import { useFetchEmployees } from "../hooks/useFetchEmployees";
+import { Employee, useFetchEmployees } from "../hooks/useFetchEmployees";
 import { useEffect, useState } from "react"
 import { GuessEmployee } from "../components/GuessEmployee";
 
 export const GameScreen = ({
   navigation,
   route: {},
-}: RootStackScreenProps<"Game">) => {
+}: RootStackScreenProps<"GameScreen">) => {
   const { employees} = useFetchEmployees();
 
   const [employee, setEmployee] = useState({
@@ -27,9 +27,8 @@ export const GameScreen = ({
     setEmployee(employees[Math.floor( Math.random()*employees.length)])
   }
 
-  return employee ? <View></View> : (
-    <GuessEmployee employee={employee} onCorrect={setRandomEmployee}></GuessEmployee>
-  );
+  return employee ? <GuessEmployee employee={employee as Employee} onCorrect={setRandomEmployee}></GuessEmployee> 
+  :<View></View>
 };
 
 const styles = StyleSheet.create({

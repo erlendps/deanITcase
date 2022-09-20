@@ -1,4 +1,4 @@
-import { StyleSheet, Image } from "react-native";
+import { StyleSheet, Image, Dimensions } from "react-native";
 
 import { Text, View } from "./Themed";
 import { Employee } from "../hooks/useFetchEmployees";
@@ -16,6 +16,7 @@ export const GuessEmployee = (props: {employee: Employee, onCorrect: () => void}
     setRevealOrder(
       [...Array(name().length).keys()].sort(() => Math.random() - 0.5))
     setHint('_'.repeat(name().length))
+    setAttempts(0);
   }, [props.employee])
 
   const onInput = (guess: string) => {
@@ -31,7 +32,7 @@ export const GuessEmployee = (props: {employee: Employee, onCorrect: () => void}
   }
 
   return (
-    <View>
+    <View style={styles.container}>
       <Image
         style={styles.image}
         key={name()}
@@ -47,13 +48,14 @@ export const GuessEmployee = (props: {employee: Employee, onCorrect: () => void}
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    width: Dimensions.get('window').width,
+    display: 'flex',
     alignItems: "center",
     justifyContent: "center",
   },
   image: {
-    width: 200,
-    height: 200,
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').width,
   },
   hint: {
     letterSpacing: 3,
