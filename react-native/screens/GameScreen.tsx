@@ -1,4 +1,4 @@
-import { StyleSheet, Image } from "react-native";
+import { StyleSheet, Image, Dimensions } from "react-native";
 import { Text, View } from "../components/Themed";
 import { RootStackScreenProps } from "../types";
 import { Employee, useFetchEmployees } from "../hooks/useFetchEmployees";
@@ -40,13 +40,16 @@ export const GameScreen = ({
   }
 
   return employee ? (
-    <>
+    <View style={styles.container}>
       <Score score={score}/> 
       <GuessEmployee employee={employee as Employee} onCorrect={handleCorrect}></GuessEmployee>
-    </>
+    </View>
   )
   :<View></View>
 };
 
 const styles = StyleSheet.create({
+  container: {
+    height: Dimensions.get("window").height,
+  }
 });
