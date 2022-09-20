@@ -49652,3 +49652,21 @@ export const isName = (name: string) => {
     .split(" ")
     .every((name_part) => names.includes(name_part.toLowerCase()));
 };
+
+export const getFiveNames = (len: number, hint: string) => {
+  const out: string[] = []
+  let filtered = names.filter(name => name.length === len)
+
+  const letters = hint.split("").filter((c) => c != '_');
+  for (const letter of letters) {
+    filtered = filtered.filter((name) => name.includes(letter));
+  }
+
+
+  for (let i = 0; i < Math.min(5, filtered.length); i++) {
+    const x = Math.floor(Math.random() * filtered.length);
+    out.push(filtered[x]);
+    filtered.splice(x, 1);
+  }
+  return out;
+}

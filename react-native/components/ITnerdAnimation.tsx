@@ -6,8 +6,11 @@ import {
   View,
   Image,
   Easing,
+  Dimensions,
 } from "react-native";
 import React, { useRef, useState, useEffect } from "react";
+import { flexbox } from "@mui/system";
+import { TALK_FONT_SIZE } from "../constants/Layout";
 
 export const ItNerd = (props: { failed: number; text?: string }) => {
   const rotAnim = useRef(new Animated.Value(0)).current;
@@ -46,10 +49,10 @@ export const ItNerd = (props: { failed: number; text?: string }) => {
           uri: "https://www.itverket.no/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fndtelfg5%2Fproduction%2Fb098dd3463842fe47e9a6948566ed522ad147d33-361x500.webp%3Fw%3D361%26h%3D500&w=384&q=75",
         }}
         resizeMode="cover"
-      />
-      <View>
-        <Text>{props.text ? props.text : ""}</Text>
-      </View>
+        />
+        <View style={styles.speech}>
+        <Text style={styles.speechText}>{props.text}</Text>
+        </View>
     </View>
   );
 };
@@ -59,8 +62,21 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
   },
-  text: {
-    width: 150,
+  speech: {
+    width: Dimensions.get("window").width - 160 ,
     height: 100,
+    borderRadius: 30,
+    backgroundColor: 'white',
+    marginLeft: 30,
+    marginRight: 30,
+    marginBottom: 10,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
+  speechText: {
+    padding: 10,
+    textAlign: 'center',
+    fontSize: TALK_FONT_SIZE,
+  }
 });

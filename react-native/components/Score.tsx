@@ -1,6 +1,5 @@
-import { StyleSheet, Text, View } from "react-native";
-
-const FONT_SIZE = 24;
+import { StyleSheet, Text } from "react-native";
+import { FONT_SIZE } from "../constants/Layout";
 
 export const Score = (props: { score: number }) => {
   return (

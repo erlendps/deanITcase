@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { GuessEmployee } from "../components/GuessEmployee";
 import { Score } from "../components/Score";
 import { ItNerd } from "../components/ITnerdAnimation";
+import { getFiveNames } from "../hooks/names";
+import {consecutiveTexts, correctTexts, wrongTexts} from "../constants/Text"
 
 export const GameScreen = ({
   navigation,
@@ -24,6 +26,7 @@ export const GameScreen = ({
   const [employeesLeft, setEmployeesLeft] = useState(4);
   const [failedOnThisEmp, setFailedOnThisEmp] = useState(0);
   const [consecutiveNotAName, setConsecutiveNotAName] = useState(0);
+  const [itManText, setItManText] = useState("");
 
   useEffect(() => {
     setRandomEmployee();
@@ -45,24 +48,32 @@ export const GameScreen = ({
     setFailedOnThisEmp(0);
     setConsecutiveNotAName(0);
     setRandomEmployee();
+    setItManText("Bra jobba!");
   };
 
   const handleWrong = () => {
     setFailedOnThisEmp(failedOnThisEmp + 1);
     setConsecutiveNotAName(0);
+    setItManText("Haha! Kan du ikke navnet på mora di heller?");
   };
 
-  const handleConsecutiveFail = () => {
-    setConsecutiveNotAName(consecutiveNotAName + 1);
-    if (consecutiveNotAName === 5) {
+  const handleConsecutiveFail = (hint: string) => {
+    let newValue = consecutiveNotAName + 1
+    if (newValue % 5 === 0) {
       setFailedOnThisEmp(failedOnThisEmp + 1);
+      let newText = "Jeg synes synd på deg, her er noen navn som kanskje passer: "
+      getFiveNames(employee.name.split(" ")[0].length, hint).forEach(name => {
+        newText += name + ", ";
+      })
+      setItManText(newText.slice(0, newText.length - 2));
     }
+    setConsecutiveNotAName(newValue);
   };
 
   return employee ? (
     <View style={styles.container}>
       <Score score={score} />
-      <ItNerd failed={failedOnThisEmp} />
+      <ItNerd failed={failedOnThisEmp} text={itManText}/>
       <GuessEmployee
         employee={employee as Employee}
         onCorrect={handleCorrect}

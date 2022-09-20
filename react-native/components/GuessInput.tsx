@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {StyleSheet, TextInput, Text, View} from "react-native";
-const FONT_SIZE = 40
+import { FONT_SIZE } from "../constants/Layout";
 
 export const GuessInput = (props: {onInput: (guess: string) => boolean, onMessage: (msg: string) => void, secret: string, hint: string}) => {
 
@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
     color: 'rgba(0, 0, 0, 0.35)',
     elevation: 1,
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    overflow: 'visible',
   },
   view : {
     position: 'absolute',

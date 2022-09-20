@@ -14,7 +14,7 @@ export const GuessEmployee = (props: {
   employee: Employee;
   onCorrect: (scoreToAdd: number) => void;
   onWrong: () => void;
-  onConsecutiveFail: () => void;
+  onConsecutiveFail: (hint: string) => void;
 }) => {
   const [revealOrder, setRevealOrder] = useState([0]);
   const [hint, setHint] = useState("");
@@ -44,6 +44,7 @@ export const GuessEmployee = (props: {
       // Correct guess
       setHint(name());
       props.onCorrect(calculateScore());
+<<<<<<< HEAD
       return true
     }
     // Wrong guess
@@ -57,13 +58,18 @@ export const GuessEmployee = (props: {
     setHint((hint) => {
       return hint.slice(0, index) + name()[index] + hint.slice(index + 1);
     });
+=======
+    
+    }
+    
+>>>>>>> 4271eb8 (Did some work on AI)
     setAttempts((attempts) => attempts + 1);
     return false
   };
 
   const onMessage = (msg: string) => {
     setMessages((messages) => [msg, ...messages]);
-    props.onConsecutiveFail();
+    props.onConsecutiveFail(hint);
   };
 
   return (
