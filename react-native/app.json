@@ -18,10 +18,10 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "dean.it.case"
+      "bundleIdentifier": "dean.itcase"
     },
     "android": {
-      "package": "dean.it.case",
+      "package": "dean.itcase",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
