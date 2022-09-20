@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import {StyleSheet, TextInput, Text, View} from "react-native";
-import { isName } from "../hooks/names";
-import { NotFoundScreen } from "../screens/NotFoundScreen";
 const FONT_SIZE = 40
 
-export const GuessInput = (props: {onInput: (guess: string) => void, onMessage: (msg: string) => void, secret: string, hint: string}) => {
+export const GuessInput = (props: {onInput: (guess: string) => boolean, onMessage: (msg: string) => void, secret: string, hint: string}) => {
 
   const [text, setText] = useState('')
   const [prevGuesses, setPrevGuesses] = useState([''])
@@ -19,13 +17,9 @@ export const GuessInput = (props: {onInput: (guess: string) => void, onMessage: 
       props.onMessage(`${text} has already been guessed!`)
       return
     }
-    if (!isName(text)) {
-      props.onMessage(`${text} is not a name!`)
-      return
-    }
+    if (props.onInput(text)) return // Correct guess!
     setPrevGuesses((prevGuesses) => [...prevGuesses, text])
     setText('')
-    props.onInput(text);
   }
 
   const inputStyle = () => StyleSheet.flatten([styles.input, {width: (10 + 0.61 * FONT_SIZE) * props.secret.length + 20}])

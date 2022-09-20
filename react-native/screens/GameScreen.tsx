@@ -21,6 +21,7 @@ export const GameScreen = ({
   });
 
   const [score, setScore] = useState(0);
+  const [employeesLeft, setEmployeesLeft] = useState(4);
   const [failedOnThisEmp, setFailedOnThisEmp] = useState(0);
   const [consecutiveNotAName, setConsecutiveNotAName] = useState(0);
 
@@ -30,11 +31,13 @@ export const GameScreen = ({
 
   const setRandomEmployee = () => {
     if (!employees) return;
+    if (employeesLeft <= 1) navigation.navigate('Welcome')
+    setEmployeesLeft((count) => count - 1)
     setEmployee(employees[Math.floor(Math.random() * employees.length)]);
   };
 
   const setNewScore = (scoreToAdd: number) => {
-    setScore(score + scoreToAdd);
+    setScore((score) => score + scoreToAdd);
   };
 
   const handleCorrect = (scoreToAdd: number) => {

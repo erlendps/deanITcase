@@ -8,6 +8,7 @@ import { Text, View } from "./Themed";
 import { Employee } from "../hooks/useFetchEmployees";
 import { GuessInput } from "./GuessInput";
 import { useEffect, useState } from "react";
+import { isName } from "../hooks/names";
 
 export const GuessEmployee = (props: {
   employee: Employee;
@@ -40,15 +41,24 @@ export const GuessEmployee = (props: {
 
   const onInput = (guess: string) => {
     if (guess.toLowerCase() == name()) {
+      // Correct guess
       setHint(name());
       props.onCorrect(calculateScore());
+      return true
     }
+    // Wrong guess
+    props.onWrong();
+    if (!isName(guess)) {
+      onMessage(`${guess} is not a name!`)
+      return false
+    }
+    // Wrong guess, but a valid name
     const index = revealOrder[attempts];
     setHint((hint) => {
       return hint.slice(0, index) + name()[index] + hint.slice(index + 1);
     });
-    props.onWrong();
     setAttempts((attempts) => attempts + 1);
+    return false
   };
 
   const onMessage = (msg: string) => {

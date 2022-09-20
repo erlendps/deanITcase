@@ -4,18 +4,11 @@ const FONT_SIZE = 24;
 
 export const Score = (props: { score: number }) => {
   return (
-    <View>
-      <Text style={styles.score}>Your Score: {props.score}</Text>
-    </View>
+      <Text style={styles.score}>Score: {props.score}</Text>
   );
 };
 
 const styles = StyleSheet.create({
-  absolute: {
-    position: "absolute",
-    elevation: 25,
-    top: 50,
-  },
   score: {
     textAlign: "center",
     fontSize: FONT_SIZE,
