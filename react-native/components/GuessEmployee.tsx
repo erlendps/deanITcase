@@ -58,7 +58,7 @@ export const GuessEmployee = (props: {
 
   return (
     <View style={styles.container}>
-      <ImageBackground
+      <ImageBackground 
         style={styles.image}
         key={name()}
         source={{ uri: props.employee.image }}
