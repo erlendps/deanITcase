@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     fontSize: FONT_SIZE,
-    fontFamily: 'courier',
+    fontFamily: 'space-mono',
   },
   placeholder: {
     color: 'rgba(0, 0, 0, 0.35)',

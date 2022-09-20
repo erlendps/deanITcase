@@ -18,16 +18,16 @@ export const WelcomeScreen = ({
         onPress={handlePress}
         buttonStyle={styles.playButton}
         textStyle={styles.textStyle}
-      ></AppButton>
+  ></AppButton>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   playButton: {
-    width: "60%",
+    width: Dimensions.get("window").width * 0.6,
     backgroundColor: "#f07200",
-    padding: "1rem",
+    padding: 12,
     borderRadius: 20,
   },
   textStyle: {
