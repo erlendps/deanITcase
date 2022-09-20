@@ -1,5 +1,5 @@
-import { StyleSheet, Image, Dimensions } from "react-native";
-import { Text, View } from "../components/Themed";
+import { StyleSheet, Dimensions } from "react-native";
+import { View } from "../components/Themed";
 import { RootStackScreenProps } from "../types";
 import { Employee, useFetchEmployees } from "../hooks/useFetchEmployees";
 import { useEffect, useState } from "react"
@@ -12,11 +12,11 @@ export const GameScreen = ({
 }: RootStackScreenProps<"GameScreen">) => {
   const { employees} = useFetchEmployees();
 
-  const [employee, setEmployee] = useState({
+  const [employee, setEmployee] = useState<Employee>({
     name: "undefined",
-    gender: "undefined",
-    image: "",
-    originalUrl: ""
+    gender: "male",
+    image: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    originalUrl: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
   });
 
   const [score, setScore] = useState(0);
@@ -42,10 +42,10 @@ export const GameScreen = ({
   return employee ? (
     <View style={styles.container}>
       <Score score={score}/> 
-      <GuessEmployee employee={employee as Employee} onCorrect={handleCorrect}></GuessEmployee>
+      <GuessEmployee employee={employee} onCorrect={handleCorrect}/>
     </View>
   )
-  :<View></View>
+  : <View></View>
 };
 
 const styles = StyleSheet.create({

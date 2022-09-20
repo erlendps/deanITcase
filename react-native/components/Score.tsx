@@ -1,4 +1,4 @@
-import {StyleSheet, TextInput, Text, View, Image} from "react-native";
+import {StyleSheet, Text, View} from "react-native";
 import { ItNerd } from './ITnerdAnimation';
 
 const FONT_SIZE = 24;
