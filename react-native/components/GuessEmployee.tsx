@@ -7,7 +7,7 @@ import { useEffect, useState } from "react"
 import { withTheme } from "@emotion/react";
 import { padding } from "@mui/system";
 const FONT_SIZE = 48;
-export const GuessEmployee = (props: {employee: Employee, onCorrect: () => void}) => {
+export const GuessEmployee = (props: {employee: Employee, onCorrect: (scoreToAdd: number) => void}) => {
   const [revealOrder, setRevealOrder] = useState([0])
   const [hint, setHint] = useState('')
   const [attempts, setAttempts] = useState(0)
@@ -31,7 +31,7 @@ export const GuessEmployee = (props: {employee: Employee, onCorrect: () => void}
   const onInput = (guess: string) => {
     if (guess.toLowerCase() == name()) {
       setHint(name());
-      props.onCorrect();
+      props.onCorrect(calculateScore());
     }
     const index = revealOrder[attempts]
     setHint((hint) => {
@@ -48,11 +48,11 @@ export const GuessEmployee = (props: {employee: Employee, onCorrect: () => void}
         source={{ uri: props.employee.image }}
         resizeMode="cover"
       />
-      <Text style={styles.hint}>{hint}</Text>
+      {/*<Text style={styles.hint}>{hint}</Text>*/}
+      
+      <GuessInput onInput={onInput} secret={name()} hint={hint} />
 
       <Text>Attempts: {attempts}</Text>
-      
-      <GuessInput onInput={onInput} secret={name()} hint={hint}> </GuessInput>
     </View>
   );
 };
@@ -69,13 +69,4 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').width,
   },
-  hint: {
-    letterSpacing: 10,
-    padding: HINT_PADDING,
-    marginTop: -1*FONT_SIZE - 2*HINT_PADDING,
-    zIndex: 3,
-    fontSize: FONT_SIZE,
-    fontFamily: 'courier',
-    backgroundColor: 'rgba(255, 255, 255, 0.5)'
-  }
 });

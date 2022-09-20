@@ -3,6 +3,9 @@ import { useRef } from "react";
 import {StyleSheet, TextInput, Text, View} from "react-native";
 import { isName } from "../hooks/names";
 const FONT_SIZE = 48
+
+
+
 export const GuessInput = (props: {onInput: (guess: string) => void, secret: string, hint: string}) => {
 
   let inputRef = React.createRef<TextInput>();
@@ -26,10 +29,10 @@ export const GuessInput = (props: {onInput: (guess: string) => void, secret: str
   }, [props]);
 
   return (
-    <>
-    <TextInput ref={inputRef} style={styles.input} placeholder={"_".repeat(props.secret.length)} onChangeText={checkText} maxLength={props.secret.length}/>
-    <Text style={styles.placeholder}>{props.hint}</Text>
-    </>
+    <View style={styles.view}>
+      <TextInput ref={inputRef} style={styles.input} placeholder={"_".repeat(props.secret.length)} onChangeText={checkText} maxLength={props.secret.length}/>
+      <Text style={styles.placeholder}>{props.hint}</Text>
+    </View>
   );
 };
 
@@ -47,13 +50,23 @@ const styles = StyleSheet.create({
   },
   placeholder: {
     letterSpacing: 10,
-    margin: -FONT_SIZE - 30,
+    marginTop: -FONT_SIZE - 30,
+    marginLeft: 10,
+    marginRight: 10,
+    borderRadius: 2,
     padding: 10,
-    color: 'rgba(0, 0, 0, 0.2)',
+    color: 'rgba(0, 0, 0, 0.35)',
     display: 'flex',
     flexDirection: 'row',
     fontSize: FONT_SIZE,
     fontFamily: 'courier', // changing font will break it
     zIndex: -3,
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+  },
+  view : {
+    marginTop: -FONT_SIZE - 30 - 5,
+    margin: 0,
+    padding: 0,
+    display: 'flex',
   }
 });
