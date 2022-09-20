@@ -13,6 +13,7 @@ export const GuessInput = (props: {onInput: (guess: string) => void, secret: str
 
   useEffect(() => {
     setPrevGuesses([])
+    setMessages([])
   }, [props.secret]);
 
   useEffect(() => {
@@ -22,7 +23,10 @@ export const GuessInput = (props: {onInput: (guess: string) => void, secret: str
       setMessages((messages) => [`${text} has already been guessed!`, ...messages])
       return
     }
-    if (!isName(text)) return
+    if (!isName(text)) {
+      setMessages((messages) => [`${text} is not a name!`, ...messages])
+      return
+    }
     setPrevGuesses((prevGuesses) => [...prevGuesses, text])
     props.onInput(text);
   }, [text])
@@ -30,7 +34,7 @@ export const GuessInput = (props: {onInput: (guess: string) => void, secret: str
   const inputStyle = () => StyleSheet.flatten([styles.input, {width: (10 + 0.61 * FONT_SIZE) * props.secret.length + 20}])
 
   return (<View style={styles.view}>
-    <TextInput value={text} style={inputStyle()} placeholder="write ur guess" onChangeText={setText} maxLength={props.secret.length}/>
+    <TextInput value={text} style={inputStyle()} onChangeText={setText} maxLength={props.secret.length}/>
     <Text style={styles.placeholder}>{props.hint}</Text>
     <FlatList
       data={messages}
