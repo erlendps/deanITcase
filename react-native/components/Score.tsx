@@ -13,6 +13,9 @@ export const Score = (props: {score: number}) => {
 const styles = StyleSheet.create({
   score: {
     textAlign: "center",
-
+    fontSize: FONT_SIZE,
+  },
+  view: {
+    marginTop: -FONT_SIZE,
   }
 });
