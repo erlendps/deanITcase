@@ -33,8 +33,8 @@ export const GuessInput = (props: {onInput: (guess: string) => void, onMessage: 
 
   return (
     <View style={styles.view}>
-      <Text style={placeholderStyle()}>{props.hint}</Text>
-      <TextInput underlineColorAndroid="transparent" autoComplete='off' value={text} style={inputStyle()} onChangeText={setText} onSubmitEditing={onSubmit} blurOnSubmit={false} maxLength={props.secret.length}/>
+      <Text allowFontScaling={false} numberOfLines={1} style={placeholderStyle()}>{props.hint}</Text>
+      <TextInput allowFontScaling={false} keyboardType="visible-password" underlineColorAndroid="rgba(0,0,0,0)" autoComplete='off' value={text} style={inputStyle()} onChangeText={setText} onSubmitEditing={onSubmit} blurOnSubmit={false} maxLength={props.secret.length}/>
     </View>
   );
 };

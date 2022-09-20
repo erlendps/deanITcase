@@ -1,22 +1,18 @@
-import {StyleSheet, Text, View} from "react-native";
-import { ItNerd } from './ITnerdAnimation';
+import { StyleSheet, Text, View } from "react-native";
 
 const FONT_SIZE = 24;
 
-export const Score = (props: {score: number}) => {
+export const Score = (props: { score: number }) => {
   return (
     <View>
       <Text style={styles.score}>Your Score: {props.score}</Text>
-      <View style={styles.absolute}>
-        <ItNerd />
-      </View>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   absolute: {
-    position: 'absolute',
+    position: "absolute",
     elevation: 25,
     top: 50,
   },
@@ -27,9 +23,4 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     margin: 10,
   },
-  image: {
-    width: 100,
-    height: 100,
-    transform: [{ rotate: '90deg'}],
-  }
 });
