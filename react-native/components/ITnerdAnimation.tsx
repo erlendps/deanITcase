@@ -47,16 +47,6 @@ export const ItNerd = (props: { failed: number; text?: string }) => {
         }}
         resizeMode="cover"
       />
-      <Image
-        style={{
-          width: 200,
-          height: 100,
-          marginLeft: 10,
-        }}
-        source={{
-          uri: "https://upload.wikimedia.org/wikipedia/commons/7/7f/Speech_bubble.svg",
-        }}
-      />
       <View>
         <Text>{props.text ? props.text : ""}</Text>
       </View>
