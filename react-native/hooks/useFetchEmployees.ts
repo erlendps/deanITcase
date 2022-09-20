@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 export interface Employee {
   name: string;
-  gender: "male" | "female";
+  gender: "male" | "female" | "other";
   image: string;
   originalUrl: string;
 }
