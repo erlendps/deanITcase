@@ -16,7 +16,7 @@ export const GuessInput = (props: {onInput: (guess: string) => void, secret: str
     setMessages([])
   }, [props.secret]);
 
-  useEffect(() => {
+  const onSubmit = () => {
     if (text.length != props.secret.length) return
     setText('')
     if (prevGuesses.includes(text)) {
@@ -29,12 +29,12 @@ export const GuessInput = (props: {onInput: (guess: string) => void, secret: str
     }
     setPrevGuesses((prevGuesses) => [...prevGuesses, text])
     props.onInput(text);
-  }, [text])
+  }
 
   const inputStyle = () => StyleSheet.flatten([styles.input, {width: (10 + 0.61 * FONT_SIZE) * props.secret.length + 20}])
 
   return (<View style={styles.view}>
-    <TextInput value={text} style={inputStyle()} onChangeText={setText} maxLength={props.secret.length}/>
+    <TextInput value={text} style={inputStyle()} onChangeText={setText} onSubmitEditing={onSubmit} blurOnSubmit={false} maxLength={props.secret.length}/>
     <Text style={styles.placeholder}>{props.hint}</Text>
     <FlatList
       data={messages}
