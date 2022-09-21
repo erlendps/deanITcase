@@ -3,13 +3,15 @@ import {
   ImageBackground,
   Dimensions,
 } from "react-native";
-import { View } from "./Themed";
+import { Text, View } from "./Themed";
 import { Employee } from "../hooks/useFetchEmployees";
 import { GuessInput } from "./GuessInput";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { isName } from "../hooks/names";
 import { LinearGradient } from "expo-linear-gradient";
 import Colors from "../constants/Colors";
+import { AppButton } from "./AppButton";
+import { TALK_FONT_SIZE } from "../constants/Layout";
 
 export const GuessEmployee = (props: {
   employee: Employee;
@@ -21,15 +23,17 @@ export const GuessEmployee = (props: {
   const [revealOrder, setRevealOrder] = useState([0]);
   const [hint, setHint] = useState("");
   const [attempts, setAttempts] = useState(0);
+  const [hasGuessedCurrent, setHasGuessedCurrent] = useState(false)
 
   const name = () => props.employee.name.split(" ")[0].toLowerCase();
-
+  
   useEffect(() => {
     setRevealOrder(
       [...Array(name().length).keys()].sort(() => Math.random() - 0.5)
     );
     setHint("_".repeat(name().length));
     setAttempts(0);
+    setHasGuessedCurrent(false)
   }, [props.employee]);
 
   const calculateScore = () => {
@@ -42,8 +46,9 @@ export const GuessEmployee = (props: {
   const onInput = (guess: string) => {
     if (guess.toLowerCase() == name()) {
       // Correct guess
+      setAttempts((attempts) => attempts + 1);
       setHint(name());
-      props.onCorrect(calculateScore());
+      setHasGuessedCurrent(true)
       return true;
     }
     // Wrong guess
@@ -69,6 +74,10 @@ export const GuessEmployee = (props: {
     props.onReGuess(guess);
   };
 
+  const onNext = () => {
+    props.onCorrect(calculateScore());
+  }
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -78,7 +87,6 @@ export const GuessEmployee = (props: {
         resizeMode="cover"
       >
         <LinearGradient
-          // Background Linear Gradient
           colors={["transparent", Colors.dark.background]}
           locations={[0.6, 1]}
           style={{ flex: 1 }}
@@ -92,10 +100,15 @@ export const GuessEmployee = (props: {
           onReGuess={onReGuess}
         />
       </ImageBackground>
-      {/*<FlatList
-        data={messages}
-        renderItem={({ item }) => <Text style={styles.message}>{item}</Text>}
-        ></FlatList>*/}
+
+      {hasGuessedCurrent
+      ? <View>
+          <Text style={styles.winText}>{attempts} {attempts == 1 ? 'guess' : 'guesses'}</Text>
+          <Text style={styles.winText}>+ {calculateScore()} points!</Text>
+          {/* @ts-ignore */}
+          <AppButton onPress={onNext} title="Next"/>
+        </View>
+      : <View></View>}
     </View>
   );
 };
@@ -114,7 +127,9 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width,
     height: Dimensions.get("window").width, // TODO
   },
-  message: {
-    color: "green",
+  winText: {
+    padding: 8,
+    textAlign: 'center',
+    fontSize: TALK_FONT_SIZE,
   },
 });

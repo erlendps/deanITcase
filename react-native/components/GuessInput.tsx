@@ -54,7 +54,7 @@ export const GuessInput = (props: {onInput: (guess: string) => boolean, onMessag
   return (
     <View style={styles.view}>
       <Text ellipsizeMode="clip" allowFontScaling={false} numberOfLines={1} style={placeholderStyle()}>{props.hint}</Text>
-      <TextInput ref={inputRef} allowFontScaling={false} keyboardType="visible-password" underlineColorAndroid="rgba(0,0,0,0)" autoComplete='off' value={text} style={inputStyle()} onChangeText={setText} onSubmitEditing={onSubmit} blurOnSubmit={false} maxLength={props.secret.length}/>
+      <TextInput ref={inputRef} allowFontScaling={false} keyboardType="visible-password" underlineColorAndroid="rgba(0,0,0,0)" autoComplete='off' value={text} style={inputStyle()} onChangeText={setText} onSubmitEditing={onSubmit} blurOnSubmit={false} maxLength={props.secret.length} editable={props.secret !== props.hint} />
     </View>
   );
 };
