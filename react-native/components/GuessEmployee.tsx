@@ -1,8 +1,4 @@
-import {
-  StyleSheet,
-  ImageBackground,
-  Dimensions,
-} from "react-native";
+import { StyleSheet, ImageBackground, Dimensions } from "react-native";
 import { Text, View } from "./Themed";
 import { Employee } from "../hooks/useFetchEmployees";
 import { GuessInput } from "./GuessInput";
@@ -27,7 +23,7 @@ export const GuessEmployee = (props: {
   const [attempts, setAttempts] = useState(0);
   const [hintCount, setHintCount] = useState(0);
   const name = () => props.employee.name.split(" ")[0].toLowerCase();
-  
+
   useEffect(() => {
     setHint("_".repeat(name().length));
     setAttempts(0);
@@ -39,9 +35,9 @@ export const GuessEmployee = (props: {
 
   useEffect(() => {
     if (hintCount == 0 && revealOrder.length > 0 && hint.length > 0) {
-      addToHint()
+      addToHint();
     }
-  }, [revealOrder, hintCount, hint])
+  }, [revealOrder, hintCount, hint]);
 
   const calculateScore = () => {
     const guessLength = name().length - hintCount;
@@ -51,20 +47,20 @@ export const GuessEmployee = (props: {
   };
 
   const addToHint = () => {
-    let _hintCount = hintCount
-    let _hint = hint
+    let _hintCount = hintCount;
+    let _hint = hint;
     for (let i = 0; i < Math.ceil((name().length - _hintCount - 1) / 4); i++) {
-      if (_hintCount >= revealOrder.length) break
+      if (_hintCount >= revealOrder.length) break;
       const index = revealOrder[_hintCount];
       _hint = _hint.slice(0, index) + name()[index] + _hint.slice(index + 1);
-      _hintCount += 1
+      _hintCount += 1;
     }
     setHintCount(() => _hintCount);
     setHint(() => _hint);
-  }
+  };
 
   const onInput = (guess: string) => {
-    if (guess.length !== name().length) return false
+    if (guess.length !== name().length) return false;
     if (guess.toLowerCase() == name()) {
       // Correct guess
       setAttempts((attempts) => attempts + 1);
@@ -79,7 +75,7 @@ export const GuessEmployee = (props: {
     }
     props.onWrong();
     // Wrong guess, but a valid name
-    addToHint()
+    addToHint();
     setAttempts((attempts) => attempts + 1);
     return true;
   };
@@ -92,7 +88,7 @@ export const GuessEmployee = (props: {
     props.onReGuess(guess);
   };
 
-  const hasGuessedCurrent = () => hint === name()
+  const hasGuessedCurrent = () => hint === name();
 
   return (
     <View style={styles.container}>
@@ -118,13 +114,15 @@ export const GuessEmployee = (props: {
         />
       </ImageBackground>
 
-      {hasGuessedCurrent()
-      ? <View>
+      {hasGuessedCurrent() ? (
+        <View>
           <Text style={styles.winText}>{attempts} gjett</Text>
           <Text style={styles.winText}>+ {calculateScore()} poeng!</Text>
-          <AppButton onPress={props.onNext} title="Neste"/>
+          <AppButton onPress={props.onNext} title="Neste" />
         </View>
-      : <View></View>}
+      ) : (
+        <View></View>
+      )}
     </View>
   );
 };
@@ -145,17 +143,17 @@ const styles = StyleSheet.create({
   },
   winText: {
     padding: 8,
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: TALK_FONT_SIZE,
   },
   employeesLeft: {
     color: Colors.accent,
-    textShadowColor: 'black',
+    textShadowColor: "black",
     textShadowRadius: 5,
-    position: 'absolute',
+    position: "absolute",
     right: 0,
     margin: 10,
-    fontFamily: 'space-mono',
+    fontFamily: "space-mono",
     fontSize: FONT_SIZE,
-  }
+  },
 });
