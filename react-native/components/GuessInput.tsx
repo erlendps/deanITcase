@@ -36,7 +36,7 @@ export const GuessInput = (props: {onInput: (guess: string) => boolean, onMessag
 
 const styles = StyleSheet.create({
   input: {
-    letterSpacing: 10,
+    letterSpacing: 8,
     position: 'absolute',
     bottom: 16,
     padding: 10,
