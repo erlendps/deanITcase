@@ -5,6 +5,7 @@ import {
   View,
   Easing,
   Dimensions,
+  ScrollView
 } from "react-native";
 import React, { useRef, useState, useEffect } from "react";
 import { TALK_FONT_SIZE } from "../constants/Layout";
@@ -48,7 +49,9 @@ export const ItNerd = (props: { failed: number; text?: string }) => {
         resizeMode="cover"
         />
         <View style={styles.speech}>
-        <Text style={styles.speechText}>{props.text}</Text>
+        <ScrollView>
+          <Text style={styles.speechText}>{props.text}</Text>
+        </ScrollView>
         </View>
     </View>
   );
