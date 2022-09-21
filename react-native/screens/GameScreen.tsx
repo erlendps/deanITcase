@@ -59,7 +59,6 @@ export const GameScreen = ({
     setEmployee(
       employeeGroup[Math.floor(Math.random() * employeeGroup.length)]
     );
-    setEmployee({name: "Dean", image: "https://render.fineartamerica.com/images/images-profile-flow/400/images/artworkimages/mediumlarge/2/2--sergey-smirnov.jpg", originalUrl: "https://render.fineartamerica.com/images/images-profile-flow/400/images/artworkimages/mediumlarge/2/2--sergey-smirnov.jpg", gender: "male"} as Employee)
   };
 
   const setNewScore = (scoreToAdd: number) => {
