@@ -59,7 +59,7 @@ export const GuessEmployee = (props: {
       return hint.slice(0, index) + name()[index] + hint.slice(index + 1);
     });
     setAttempts((attempts) => attempts + 1);
-    return false
+    return true
   };
 
   const onMessage = (msg: string) => {
