@@ -54,8 +54,8 @@ export const GameScreen = ({
     }
 
     setEmployeesLeft((count) => count - 1);
-    const index = (route.params.group ?? 0) * 16;
-    const employeeGroup = employees.slice(index, index + 16);
+    const index = (route.params.group ?? 0) * 25;
+    const employeeGroup = employees.slice(index, index + 25);
     setEmployee(
       employeeGroup[Math.floor(Math.random() * employeeGroup.length)]
     );
