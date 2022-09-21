@@ -3,7 +3,6 @@ import {
   ImageBackground,
   Dimensions,
   Animated,
-  Easing,
 } from "react-native";
 import { Text, View } from "./Themed";
 import { Employee } from "../hooks/useFetchEmployees";
@@ -160,6 +159,7 @@ export const GuessEmployee = (props: {
           hint={hint}
           onMessage={onMessage}
           onReGuess={onReGuess}
+          employee={props.employee}
         />
       </ImageBackground>
 

@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import {StyleSheet, TextInput, Text, View, Keyboard} from "react-native";
 import { FONT_SIZE } from "../constants/Layout";
+import { Employee } from "../hooks/useFetchEmployees";
 import { useKeyboardHeight } from "../hooks/useKeyboardHeight";
 
-export const GuessInput = (props: {onInput: (guess: string) => boolean, onMessage: (msg: string) => void, secret: string, hint: string, onReGuess: (guess: string) => void}) => {
+export const GuessInput = (props: {onInput: (guess: string) => boolean, onMessage: (msg: string) => void, secret: string, hint: string, onReGuess: (guess: string) => void, employee: Employee}) => {
 
   const [text, setText] = useState('')
   const [prevGuesses, setPrevGuesses] = useState([''])
@@ -13,7 +14,7 @@ export const GuessInput = (props: {onInput: (guess: string) => boolean, onMessag
   useEffect(() => {
     setPrevGuesses([])
     inputRef.current?.focus()
-  }, [props.secret]);
+  }, [props.employee]);
 
   const onSubmit = () => {
     if (text.length != props.secret.length) return
