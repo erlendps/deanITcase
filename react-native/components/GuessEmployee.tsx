@@ -11,10 +11,12 @@ import { isName } from "../hooks/names";
 import { LinearGradient } from "expo-linear-gradient";
 import Colors from "../constants/Colors";
 import { AppButton } from "./AppButton";
-import { TALK_FONT_SIZE } from "../constants/Layout";
+import { FONT_SIZE, TALK_FONT_SIZE } from "../constants/Layout";
+import { red } from "@mui/material/colors";
 
 export const GuessEmployee = (props: {
   employee: Employee;
+  employeesLeft: number;
   onCorrect: (scoreToAdd: number) => void;
   onWrong: () => void;
   onConsecutiveFail: (hint: string) => void;
@@ -74,7 +76,7 @@ export const GuessEmployee = (props: {
     }
     // Wrong guess
     if (!isName(guess)) {
-      onMessage(`${guess} is not a name!`);
+      onMessage(`${guess} er ikke et navn!`);
       return false;
     }
     props.onWrong();
@@ -102,6 +104,7 @@ export const GuessEmployee = (props: {
         source={{ uri: props.employee.image }}
         resizeMode="cover"
       >
+        <Text style={styles.employeesLeft}>{4 - props.employeesLeft}/4</Text>
         <LinearGradient
           colors={["transparent", Colors.dark.background]}
           locations={[0.6, 1]}
@@ -119,10 +122,10 @@ export const GuessEmployee = (props: {
 
       {hasGuessedCurrent()
       ? <View>
-          <Text style={styles.winText}>{attempts} {attempts == 1 ? 'guess' : 'guesses'}</Text>
-          <Text style={styles.winText}>+ {calculateScore()} points!</Text>
+          <Text style={styles.winText}>{attempts} gjett</Text>
+          <Text style={styles.winText}>+ {calculateScore()} poeng!</Text>
           {/* @ts-ignore */}
-          <AppButton onPress={props.onNext} title="Next"/>
+          <AppButton onPress={props.onNext} title="Neste"/>
         </View>
       : <View></View>}
     </View>
@@ -148,4 +151,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: TALK_FONT_SIZE,
   },
+  employeesLeft: {
+    color: Colors.accent,
+    textShadowColor: 'black',
+    textShadowRadius: 5,
+    position: 'absolute',
+    right: 0,
+    margin: 10,
+    fontFamily: 'space-mono',
+    fontSize: FONT_SIZE,
+  }
 });

@@ -10,7 +10,7 @@ export const NotFoundScreen = ({
     <View style={styles.container}>
       <Text style={styles.title}>This screen doesn't exist.</Text>
       <TouchableOpacity
-        onPress={() => navigation.navigate("Welcome")}
+        onPress={() => navigation.navigate("Welcome", {})}
         style={styles.link}
       >
         <Text style={styles.linkText}>Go to home screen!</Text>

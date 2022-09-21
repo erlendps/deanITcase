@@ -4,10 +4,11 @@ import Color from "../constants/Colors"
 
 export const Score = (props: { score: number }) => {
   return (
-      <Text style={styles.score}>current score: {props.score.toString()}</Text>
+      <Text style={styles.score}>Deane poeng: {props.score.toString()}</Text>
   );
 };
 
+'1'
 const styles = StyleSheet.create({
   score: {
     textAlign: "center",

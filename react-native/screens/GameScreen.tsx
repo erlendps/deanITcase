@@ -35,7 +35,10 @@ export const GameScreen = ({
 
   const setRandomEmployee = () => {
     if (!employees) return;
-    if (employeesLeft <= 1) navigation.navigate("Welcome");
+    if (employeesLeft <= 1) {
+      navigation.navigate("Welcome", {score: score} );
+    }
+    
     setEmployeesLeft((count) => count - 1);
     setEmployee(employees[Math.floor(Math.random() * employees.length)]);
   };
@@ -92,6 +95,7 @@ export const GameScreen = ({
       <ItNerd failed={failedOnThisEmp} text={itManText} />
       <GuessEmployee
         employee={employee as Employee}
+        employeesLeft={employeesLeft}
         onCorrect={handleCorrect}
         onWrong={handleWrong}
         onConsecutiveFail={handleConsecutiveFail}

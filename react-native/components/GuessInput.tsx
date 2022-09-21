@@ -16,7 +16,7 @@ export const GuessInput = (props: {onInput: (guess: string) => boolean, onMessag
   const onSubmit = () => {
     if (text.length != props.secret.length) return
     if (prevGuesses.includes(text)) {
-      props.onMessage(`${text} has already been guessed!`)
+      props.onMessage(`${text} har allerede blitt gjettet!`)
       props.onReGuess(text);
       return
     }
