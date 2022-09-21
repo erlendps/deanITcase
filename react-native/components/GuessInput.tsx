@@ -17,9 +17,10 @@ export const GuessInput = (props: {onInput: (guess: string) => boolean, onMessag
       props.onMessage(`${text} has already been guessed!`)
       return
     }
-    if (props.onInput(text)) return // Correct guess!
     setPrevGuesses((prevGuesses) => [...prevGuesses, text])
-    setText('')
+    if (props.onInput(text)) {
+      setText('')
+    }
   }
 
   const inputStyle = () => StyleSheet.flatten([styles.input, {width: (10 + 0.61 * FONT_SIZE) * props.secret.length + 20}])

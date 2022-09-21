@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
   image: {
     elevation: 0,
     width: Dimensions.get("window").width,
-    height: Dimensions.get("window").width,
+    height: Dimensions.get("window").width * 0.8, // TODO
   },
   message: {
     color: "green",
