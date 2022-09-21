@@ -1,8 +1,14 @@
-import { StyleSheet, ImageBackground, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  ImageBackground,
+  Dimensions,
+  Animated,
+  Easing,
+} from "react-native";
 import { Text, View } from "./Themed";
 import { Employee } from "../hooks/useFetchEmployees";
 import { GuessInput } from "./GuessInput";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { isName } from "../hooks/names";
 import { LinearGradient } from "expo-linear-gradient";
 import Colors from "../constants/Colors";
@@ -12,6 +18,7 @@ import { FONT_SIZE, TALK_FONT_SIZE } from "../constants/Layout";
 export const GuessEmployee = (props: {
   employee: Employee;
   employeesLeftString: string;
+  combo: number;
   onCorrect: (scoreToAdd: number) => void;
   onWrong: () => void;
   onConsecutiveFail: (hint: string) => void;
@@ -22,6 +29,9 @@ export const GuessEmployee = (props: {
   const [hint, setHint] = useState("");
   const [attempts, setAttempts] = useState(0);
   const [hintCount, setHintCount] = useState(0);
+  const [showCombo, setShowCombo] = useState(false);
+  const animValue = useRef(new Animated.Value(0)).current;
+
   const name = () => props.employee.name.split(" ")[0].toLowerCase();
 
   useEffect(() => {
@@ -34,6 +44,24 @@ export const GuessEmployee = (props: {
   }, [props.employee]);
 
   useEffect(() => {
+    if (props.combo < 2 || props.combo > 3) return;
+
+    // flash combo
+    setShowCombo(true);
+
+    Animated.loop(
+      Animated.timing(animValue, {
+        toValue: 1,
+        duration: 200,
+        useNativeDriver: false,
+      }),
+      { iterations: 10 }
+    ).start(() => {
+      setShowCombo(false);
+    });
+  }, [props.combo]);
+
+  useEffect(() => {
     if (hintCount == 0 && revealOrder.length > 0 && hint.length > 0) {
       addToHint();
     }
@@ -43,7 +71,7 @@ export const GuessEmployee = (props: {
     const guessLength = name().length - hintCount;
     let score = guessLength * 100 + 300;
     score += name().length * 20;
-    return score;
+    return (props.combo == 0 ? 1 : props.combo) * score;
   };
 
   const addToHint = () => {
@@ -99,6 +127,21 @@ export const GuessEmployee = (props: {
         resizeMode="cover"
       >
         <Text style={styles.employeesLeft}>{props.employeesLeftString}</Text>
+        <Animated.Text
+          style={{
+            opacity: animValue,
+            color: Colors.accent,
+            fontSize: FONT_SIZE,
+            textShadowColor: "black",
+            textShadowRadius: 5,
+            position: "absolute",
+            left: Dimensions.get("window").width / 2 - FONT_SIZE * 3,
+            top: Dimensions.get("window").width / 2 - FONT_SIZE,
+            fontFamily: "space-mono",
+          }}
+        >
+          {showCombo ? props.combo + "X COMBO!!" : ""}
+        </Animated.Text>
         <LinearGradient
           colors={["transparent", Colors.dark.background]}
           locations={[0.6, 1]}

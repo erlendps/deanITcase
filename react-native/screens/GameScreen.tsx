@@ -24,12 +24,13 @@ export const GameScreen = ({
   const [employee, setEmployee] = useState<Employee | null>(null);
 
   const [score, setScore] = useState(0);
-  const employeesPerRound = 5
+  const employeesPerRound = 5;
   const [employeesLeft, setEmployeesLeft] = useState(employeesPerRound);
   const [failedOnThisEmp, setFailedOnThisEmp] = useState(0);
   const [consecutiveNotAName, setConsecutiveNotAName] = useState(0);
   const [itManText, setItManText] = useState("");
   const [timer, setTimer] = useState(0);
+  const [combo, setCombo] = useState(0);
 
   useEffect(() => {
     setRandomEmployee();
@@ -38,24 +39,26 @@ export const GameScreen = ({
   useEffect(() => {
     const interval = setInterval(updateTime, 1000);
     return () => clearInterval(interval);
-  }, [])
+  }, []);
 
   const updateTime = () => {
-    setTimer(prev => prev + 1000);
-  }
+    setTimer((prev) => prev + 1000);
+  };
 
   const setRandomEmployee = () => {
     if (!employees) return;
     if (employeesLeft <= 0) {
       let s = score;
-      s += Math.max(10*(180 - timer/1000), 0);
-      navigation.navigate("Welcome", {score: score, time: timer} );
+      s += Math.max(10 * (180 - timer / 1000), 0);
+      navigation.navigate("Welcome", { score: score, time: timer });
     }
-    
+
     setEmployeesLeft((count) => count - 1);
-    const index = (route.params.group ?? 0) * 16
-    const employeeGroup = employees.slice(index, index + 16)
-    setEmployee(employeeGroup[Math.floor(Math.random() * employeeGroup.length)]);
+    const index = (route.params.group ?? 0) * 16;
+    const employeeGroup = employees.slice(index, index + 16);
+    setEmployee(
+      employeeGroup[Math.floor(Math.random() * employeeGroup.length)]
+    );
   };
 
   const setNewScore = (scoreToAdd: number) => {
@@ -67,17 +70,19 @@ export const GameScreen = ({
     setFailedOnThisEmp(0);
     setConsecutiveNotAName(0);
     setItManText(correctTexts[Math.floor(Math.random() * correctTexts.length)]);
+    setCombo((oldCombo) => oldCombo + 1);
     playWhatsApp();
   };
 
   const handleNext = () => {
     setRandomEmployee();
-  }
+  };
 
   const handleWrong = () => {
     setFailedOnThisEmp(failedOnThisEmp + 1);
     setConsecutiveNotAName(0);
     setItManText(wrongTexts[Math.floor(Math.random() * wrongTexts.length)]);
+    setCombo(0);
     playAlarmSound();
   };
 
@@ -87,9 +92,11 @@ export const GameScreen = ({
       setFailedOnThisEmp(failedOnThisEmp + 1);
       let newText =
         consecutiveTexts[Math.floor(Math.random() * consecutiveTexts.length)];
-      getFiveNames(employee?.name.split(" ")[0].length ?? 0, hint).forEach((name) => {
-        newText += name + ", ";
-      });
+      getFiveNames(employee?.name.split(" ")[0].length ?? 0, hint).forEach(
+        (name) => {
+          newText += name + ", ";
+        }
+      );
       setItManText(newText.slice(0, newText.length - 2));
     } else {
       setItManText(
@@ -97,6 +104,7 @@ export const GameScreen = ({
       );
     }
     setConsecutiveNotAName(newValue);
+    setCombo(0);
     playApplause();
   };
 
@@ -106,11 +114,14 @@ export const GameScreen = ({
 
   return employee ? (
     <View style={styles.container}>
-      <Score score={score} time={timer/1000} />
+      <Score score={score} time={timer / 1000} />
       <ItNerd failed={failedOnThisEmp} text={itManText} />
       <GuessEmployee
         employee={employee as Employee}
-        employeesLeftString={`${employeesPerRound - employeesLeft}/${employeesPerRound}`}
+        employeesLeftString={`${
+          employeesPerRound - employeesLeft
+        }/${employeesPerRound}`}
+        combo={combo}
         onCorrect={handleCorrect}
         onWrong={handleWrong}
         onConsecutiveFail={handleConsecutiveFail}
