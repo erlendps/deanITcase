@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {StyleSheet, TextInput, Text, View} from "react-native";
+import {StyleSheet, TextInput, Text, View, Keyboard} from "react-native";
 import { FONT_SIZE } from "../constants/Layout";
 
 export const GuessInput = (props: {onInput: (guess: string) => boolean, onMessage: (msg: string) => void, secret: string, hint: string}) => {
@@ -23,7 +23,29 @@ export const GuessInput = (props: {onInput: (guess: string) => boolean, onMessag
     }
   }
 
-  const inputStyle = () => StyleSheet.flatten([styles.input, {width: (10 + 0.61 * FONT_SIZE) * props.secret.length + 20}])
+  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      () => {
+        setKeyboardVisible(true); // or some other action
+      }
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      () => {
+        setKeyboardVisible(false); // or some other action
+      }
+    );
+
+    return () => {
+      keyboardDidHideListener.remove();
+      keyboardDidShowListener.remove();
+    };
+  }, []);
+
+  const inputStyle = () => StyleSheet.flatten([styles.input, {width: (10 + 0.61 * FONT_SIZE) * props.secret.length + 20, bottom: isKeyboardVisible ? 80 : 10}])
   const placeholderStyle = () => StyleSheet.flatten([inputStyle(), styles.placeholder])
 
   return (
@@ -38,7 +60,6 @@ const styles = StyleSheet.create({
   input: {
     letterSpacing: 8,
     position: 'absolute',
-    bottom: 16,
     padding: 10,
     borderRadius: 10,
     fontSize: FONT_SIZE,

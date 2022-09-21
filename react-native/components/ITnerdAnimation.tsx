@@ -40,6 +40,7 @@ export const ItNerd = (props: { failed: number; text?: string }) => {
         style={{
           width: 110,
           height: 110,
+          marginLeft: 18,
           transform: [{ rotate: spin ? spin : "90deg" }],
         }}
         key="mannen"
@@ -65,9 +66,9 @@ const styles = StyleSheet.create({
   speech: {
     width: Dimensions.get("window").width - 160 ,
     height: 100,
-    borderRadius: 30,
-    backgroundColor: 'white',
-    marginLeft: 30,
+    borderRadius: 16,
+    backgroundColor: 'rgba(255, 255, 255, 0.85)',
+    marginLeft: 20,
     marginRight: 30,
     marginBottom: 10,
     display: 'flex',

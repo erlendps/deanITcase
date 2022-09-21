@@ -9,6 +9,8 @@ import { Employee } from "../hooks/useFetchEmployees";
 import { GuessInput } from "./GuessInput";
 import { useEffect, useState } from "react";
 import { isName } from "../hooks/names";
+import { LinearGradient } from 'expo-linear-gradient';
+import Colors from '../constants/Colors'
 
 export const GuessEmployee = (props: {
   employee: Employee;
@@ -75,6 +77,13 @@ export const GuessEmployee = (props: {
         source={{ uri: props.employee.image }}
         resizeMode="cover"
       >
+        <LinearGradient
+          // Background Linear Gradient
+          colors={['transparent', Colors.dark.background]}
+          locations={[0.6, 1]}
+          style={{flex: 1}}
+        />
+        
         <GuessInput
           onInput={onInput}
           secret={name()}
@@ -102,7 +111,7 @@ const styles = StyleSheet.create({
   image: {
     elevation: 0,
     width: Dimensions.get("window").width,
-    height: Dimensions.get("window").width * 0.8, // TODO
+    height: Dimensions.get("window").width, // TODO
   },
   message: {
     color: "green",
