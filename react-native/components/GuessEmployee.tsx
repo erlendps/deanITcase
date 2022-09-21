@@ -17,12 +17,11 @@ export const GuessEmployee = (props: {
   onCorrect: (scoreToAdd: number) => void;
   onWrong: () => void;
   onConsecutiveFail: (hint: string) => void;
-  onReguess: (guess: string) => void;
+  onReGuess: (guess: string) => void;
 }) => {
   const [revealOrder, setRevealOrder] = useState([0]);
   const [hint, setHint] = useState("");
   const [attempts, setAttempts] = useState(0);
-  const [messages, setMessages] = useState([""]);
 
   const name = () => props.employee.name.split(" ")[0].toLowerCase();
 
@@ -32,7 +31,6 @@ export const GuessEmployee = (props: {
     );
     setHint("_".repeat(name().length));
     setAttempts(0);
-    setMessages([]);
   }, [props.employee]);
 
   const calculateScore = () => {
@@ -65,12 +63,11 @@ export const GuessEmployee = (props: {
   };
 
   const onMessage = (msg: string) => {
-    setMessages((messages) => [msg, ...messages]);
     props.onConsecutiveFail(hint);
   };
 
-  const onReguess = (guess: string) => {
-    props.onReguess(guess);
+  const onReGuess = (guess: string) => {
+    props.onReGuess(guess);
   }
 
   return (
@@ -93,7 +90,7 @@ export const GuessEmployee = (props: {
           secret={name()}
           hint={hint}
           onMessage={onMessage}
-          onReguess={onReguess}
+          onReGuess={onReGuess}
         />
       </ImageBackground>
       {/*<FlatList

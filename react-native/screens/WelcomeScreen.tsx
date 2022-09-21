@@ -1,8 +1,8 @@
-import { Dimensions, ScrollView, StyleSheet } from "react-native";
-import { Text, View } from "../components/Themed";
+import { Dimensions, StyleSheet } from "react-native";
+import { View } from "../components/Themed";
 import { AppButton } from "../components/AppButton";
-import { Employee, useFetchEmployees } from "../hooks/useFetchEmployees";
 import { RootTabScreenProps } from "../types";
+import Color from '../constants/Colors'
 
 export const WelcomeScreen = ({
   navigation,
@@ -26,7 +26,7 @@ export const WelcomeScreen = ({
 const styles = StyleSheet.create({
   playButton: {
     width: Dimensions.get("window").width * 0.6,
-    backgroundColor: "#f07200",
+    backgroundColor: Color.accent,
     padding: 12,
     borderRadius: 20,
   },

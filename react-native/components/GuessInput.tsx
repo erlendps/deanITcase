@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import {StyleSheet, TextInput, Text, View, Keyboard} from "react-native";
 import { FONT_SIZE } from "../constants/Layout";
 
-export const GuessInput = (props: {onInput: (guess: string) => boolean, onMessage: (msg: string) => void, secret: string, hint: string, onReguess: (guess: string) => void}) => {
+export const GuessInput = (props: {onInput: (guess: string) => boolean, onMessage: (msg: string) => void, secret: string, hint: string, onReGuess: (guess: string) => void}) => {
 
   const [text, setText] = useState('')
   const [prevGuesses, setPrevGuesses] = useState([''])
@@ -15,7 +15,7 @@ export const GuessInput = (props: {onInput: (guess: string) => boolean, onMessag
     if (text.length != props.secret.length) return
     if (prevGuesses.includes(text)) {
       props.onMessage(`${text} has already been guessed!`)
-      props.onReguess(text);
+      props.onReGuess(text);
       return
     }
     setPrevGuesses((prevGuesses) => [...prevGuesses, text])

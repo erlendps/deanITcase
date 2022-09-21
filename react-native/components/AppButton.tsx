@@ -1,4 +1,4 @@
-import { StyleSheet, TouchableOpacity, Text } from "react-native";
+import { TouchableOpacity, Text } from "react-native";
 
 export type ButtonProps = {
   onPress: () => void;

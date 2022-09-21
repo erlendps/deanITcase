@@ -72,7 +72,7 @@ export const GameScreen = ({
     setConsecutiveNotAName(newValue);
   };
 
-  const handleReguess = (guess: string) => {
+  const handleReGuess = (guess: string) => {
     setItManText(`Du har jo allerede gjettet ${guess}, finn på noe nytt!`);
   }
 
@@ -85,7 +85,7 @@ export const GameScreen = ({
         onCorrect={handleCorrect}
         onWrong={handleWrong}
         onConsecutiveFail={handleConsecutiveFail}
-        onReguess={handleReguess}
+        onReGuess={handleReGuess}
       ></GuessEmployee>
     </View>
   ) : (
