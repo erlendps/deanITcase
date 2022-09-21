@@ -2,7 +2,7 @@ import { Audio } from "expo-av";
 
 export const playAlarmSound = async () => {
   const { sound } = await Audio.Sound.createAsync(
-    require("../assets/sound/lose.mp3")
+    require("../assets/sound/hmm.mp3")
   );
   await sound.playAsync();
 };

@@ -33,7 +33,7 @@ export const WelcomeScreen = ({
         onPress={handlePress}
       ></AppButton>
       <View style={styles.highscore}>
-        <Text style={styles.text}><b>Poengtavle</b> {'\n'}
+        <Text style={styles.text}><Text style={{fontWeight: 'bold'}}>Poengtavle</Text>{'\n'}
           {highscores.length ? highscores.slice(0, Math.min(5, highscores.length)).map(
             (v, i) => (i+1).toString() + ". " + v.toString()
             ).join('\n') : 'Avventer spilling.'}

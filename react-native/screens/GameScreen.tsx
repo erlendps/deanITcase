@@ -35,7 +35,7 @@ export const GameScreen = ({
 
   const setRandomEmployee = () => {
     if (!employees) return;
-    if (employeesLeft <= 1) {
+    if (employeesLeft <= 0) {
       navigation.navigate("Welcome", {score: score} );
     }
     
