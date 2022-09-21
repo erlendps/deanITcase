@@ -21,14 +21,7 @@ export const GameScreen = ({
 }: RootStackScreenProps<"GameScreen">) => {
   const { employees } = useFetchEmployees();
 
-  const [employee, setEmployee] = useState<Employee>({
-    name: "undefined",
-    gender: "female",
-    image:
-      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-    originalUrl:
-      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-  });
+  const [employee, setEmployee] = useState<Employee | null>(null);
 
   const [score, setScore] = useState(0);
   const [employeesLeft, setEmployeesLeft] = useState(4);
@@ -55,10 +48,13 @@ export const GameScreen = ({
     setNewScore(scoreToAdd);
     setFailedOnThisEmp(0);
     setConsecutiveNotAName(0);
-    setRandomEmployee();
     setItManText(correctTexts[Math.floor(Math.random() * correctTexts.length)]);
     playWhatsApp();
   };
+
+  const handleNext = () => {
+    setRandomEmployee();
+  }
 
   const handleWrong = () => {
     setFailedOnThisEmp(failedOnThisEmp + 1);
@@ -69,11 +65,11 @@ export const GameScreen = ({
 
   const handleConsecutiveFail = (hint: string) => {
     let newValue = consecutiveNotAName + 1;
-    if (newValue % 5 === 0) {
+    if (newValue % 3 === 0) {
       setFailedOnThisEmp(failedOnThisEmp + 1);
       let newText =
         consecutiveTexts[Math.floor(Math.random() * consecutiveTexts.length)];
-      getFiveNames(employee.name.split(" ")[0].length, hint).forEach((name) => {
+      getFiveNames(employee?.name.split(" ")[0].length ?? 0, hint).forEach((name) => {
         newText += name + ", ";
       });
       setItManText(newText.slice(0, newText.length - 2));
@@ -100,6 +96,7 @@ export const GameScreen = ({
         onWrong={handleWrong}
         onConsecutiveFail={handleConsecutiveFail}
         onReGuess={handleReGuess}
+        onNext={handleNext}
       ></GuessEmployee>
     </View>
   ) : (
