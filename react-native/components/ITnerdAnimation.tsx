@@ -1,15 +1,12 @@
 import {
   StyleSheet,
   Animated,
-  TextInput,
   Text,
   View,
-  Image,
   Easing,
   Dimensions,
 } from "react-native";
 import React, { useRef, useState, useEffect } from "react";
-import { flexbox } from "@mui/system";
 import { TALK_FONT_SIZE } from "../constants/Layout";
 
 export const ItNerd = (props: { failed: number; text?: string }) => {
@@ -40,8 +37,8 @@ export const ItNerd = (props: { failed: number; text?: string }) => {
     <View style={styles.container}>
       <Animated.Image
         style={{
-          width: 100,
-          height: 100,
+          width: 110,
+          height: 110,
           transform: [{ rotate: spin ? spin : "90deg" }],
         }}
         key="mannen"
