@@ -27,7 +27,7 @@ export const ItNerd = (props: { failed: number; text?: string }) => {
     });
     const newSpin = rotAnim.interpolate({
       inputRange: [0, 1],
-      outputRange: ["90deg", "450deg"],
+      outputRange: ["0deg", "360deg"],
     });
     setSpin(newSpin);
   };

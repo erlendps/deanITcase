@@ -48,20 +48,20 @@ export const GameScreen = ({
     setFailedOnThisEmp(0);
     setConsecutiveNotAName(0);
     setRandomEmployee();
-    setItManText("Bra jobba!");
+    setItManText(correctTexts[Math.floor(Math.random()*correctTexts.length)]);
   };
 
   const handleWrong = () => {
     setFailedOnThisEmp(failedOnThisEmp + 1);
     setConsecutiveNotAName(0);
-    setItManText("Haha! Kan du ikke navnet på mora di heller?");
+    setItManText(wrongTexts[Math.floor(Math.random()*wrongTexts.length)]);
   };
 
   const handleConsecutiveFail = (hint: string) => {
     let newValue = consecutiveNotAName + 1
     if (newValue % 5 === 0) {
       setFailedOnThisEmp(failedOnThisEmp + 1);
-      let newText = "Jeg synes synd på deg, her er noen navn som kanskje passer: "
+      let newText = consecutiveTexts[Math.floor(Math.random()*consecutiveTexts.length)] 
       getFiveNames(employee.name.split(" ")[0].length, hint).forEach(name => {
         newText += name + ", ";
       })
