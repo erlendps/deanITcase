@@ -44,7 +44,7 @@ export const GuessEmployee = (props: {
   }, [props.employee]);
 
   useEffect(() => {
-    if (props.combo < 2 || props.combo > 3) return;
+    if (props.combo < 2) return;
 
     // flash combo
     setShowCombo(true);
@@ -71,7 +71,11 @@ export const GuessEmployee = (props: {
     const guessLength = name().length - hintCount;
     let score = guessLength * 100 + 300;
     score += name().length * 20;
-    return (props.combo == 0 ? 1 : props.combo) * score;
+    let multiply;
+    if (props.combo === 0) multiply = 1;
+    else if (props.combo > 3) multiply = 3;
+    else multiply = props.combo;
+    return multiply * score;
   };
 
   const addToHint = () => {
@@ -140,7 +144,9 @@ export const GuessEmployee = (props: {
             fontFamily: "space-mono",
           }}
         >
-          {showCombo ? props.combo + "X COMBO!!" : ""}
+          {showCombo
+            ? (props.combo >= 4 ? "3" : props.combo) + "X COMBO!!"
+            : ""}
         </Animated.Text>
         <LinearGradient
           colors={["transparent", Colors.dark.background]}
