@@ -23,7 +23,7 @@ export const GroupScreen = ({
     <View style={styles.container}>
       <Text style={styles.text}>Velg en gruppe</Text>
       {[...Array(4).keys()].map((group => 
-      <View style={styles.buttonContainer}>
+      <View key={group} style={styles.buttonContainer}>
         <AppButton
           title={groupNames[group]}
           key={group}
