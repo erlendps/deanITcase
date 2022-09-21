@@ -12,11 +12,10 @@ import { LinearGradient } from "expo-linear-gradient";
 import Colors from "../constants/Colors";
 import { AppButton } from "./AppButton";
 import { FONT_SIZE, TALK_FONT_SIZE } from "../constants/Layout";
-import { red } from "@mui/material/colors";
 
 export const GuessEmployee = (props: {
   employee: Employee;
-  employeesLeft: number;
+  employeesLeftString: string;
   onCorrect: (scoreToAdd: number) => void;
   onWrong: () => void;
   onConsecutiveFail: (hint: string) => void;
@@ -104,7 +103,7 @@ export const GuessEmployee = (props: {
         source={{ uri: props.employee.image }}
         resizeMode="cover"
       >
-        <Text style={styles.employeesLeft}>{4 - props.employeesLeft}/4</Text>
+        <Text style={styles.employeesLeft}>{props.employeesLeftString}</Text>
         <LinearGradient
           colors={["transparent", Colors.dark.background]}
           locations={[0.6, 1]}
@@ -124,7 +123,6 @@ export const GuessEmployee = (props: {
       ? <View>
           <Text style={styles.winText}>{attempts} gjett</Text>
           <Text style={styles.winText}>+ {calculateScore()} poeng!</Text>
-          {/* @ts-ignore */}
           <AppButton onPress={props.onNext} title="Neste"/>
         </View>
       : <View></View>}

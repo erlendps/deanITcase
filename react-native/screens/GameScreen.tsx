@@ -17,14 +17,15 @@ import { playAlarmSound, playApplause, playWhatsApp } from "../utils/Sounds";
 
 export const GameScreen = ({
   navigation,
-  route: {},
+  route,
 }: RootStackScreenProps<"GameScreen">) => {
   const { employees } = useFetchEmployees();
 
   const [employee, setEmployee] = useState<Employee | null>(null);
 
   const [score, setScore] = useState(0);
-  const [employeesLeft, setEmployeesLeft] = useState(4);
+  const employeesPerRound = 5
+  const [employeesLeft, setEmployeesLeft] = useState(employeesPerRound);
   const [failedOnThisEmp, setFailedOnThisEmp] = useState(0);
   const [consecutiveNotAName, setConsecutiveNotAName] = useState(0);
   const [itManText, setItManText] = useState("");
@@ -40,7 +41,9 @@ export const GameScreen = ({
     }
     
     setEmployeesLeft((count) => count - 1);
-    setEmployee(employees[Math.floor(Math.random() * employees.length)]);
+    const index = (route.params.group ?? 0) * 16
+    const employeeGroup = employees.slice(index, index + 16)
+    setEmployee(employeeGroup[Math.floor(Math.random() * employeeGroup.length)]);
   };
 
   const setNewScore = (scoreToAdd: number) => {
@@ -95,7 +98,7 @@ export const GameScreen = ({
       <ItNerd failed={failedOnThisEmp} text={itManText} />
       <GuessEmployee
         employee={employee as Employee}
-        employeesLeft={employeesLeft}
+        employeesLeftString={`${employeesPerRound - employeesLeft}/${employeesPerRound}`}
         onCorrect={handleCorrect}
         onWrong={handleWrong}
         onConsecutiveFail={handleConsecutiveFail}

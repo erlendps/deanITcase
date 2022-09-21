@@ -1,28 +1,29 @@
 import { Dimensions, StyleSheet, Text } from "react-native";
 import { View } from "../components/Themed";
 import { AppButton } from "../components/AppButton";
-import { RootTabScreenProps } from "../types";
-import { FONT_SIZE, TALK_FONT_SIZE } from "../constants/Layout";
+import { RootStackScreenProps } from "../types";
+import { TALK_FONT_SIZE } from "../constants/Layout";
 import { useEffect, useState } from "react";
 
 export const WelcomeScreen = ({
   navigation, route
-}: RootTabScreenProps<"Welcome">) => {
+}: RootStackScreenProps<"Welcome">) => {
 
   const handlePress = () => {
-    navigation.navigate('GameScreen', {});
+    navigation.navigate('GroupScreen', {});
   }
 
   const [highscores, setHighscores] = useState<number[]>([]);
   useEffect(() => {
-    if (route.params) if (route.params.score) addToHighScoreList(route.params.score);
+    if (route.params?.score) {
+      addToHighScoreList(route.params.score);
+    }
   }, [route.params])
 
   const addToHighScoreList = (newScore: number) => {
-    let hs = [...highscores];
+    const hs = [...highscores];
     hs.push(newScore);
-    hs.sort((a, b) => Number(a) - Number(b));
-    hs.reverse();
+    hs.sort((a, b) => Number(b) - Number(a));
     setHighscores(hs);
   }
 

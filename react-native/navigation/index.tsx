@@ -15,6 +15,7 @@ import { ColorSchemeName, Pressable } from "react-native";
 import { NotFoundScreen } from "../screens/NotFoundScreen";
 import { WelcomeScreen } from "../screens/WelcomeScreen";
 import { GameScreen } from "../screens/GameScreen";
+import { GroupScreen } from "../screens/GroupScreen";
 import {
   RootStackParamList,
 } from "../types";
@@ -48,7 +49,7 @@ function RootNavigator() {
         name="Welcome"
         component={WelcomeScreen}
         options={{ headerShown: false }}
-  />
+      />
       <Stack.Screen
         name="GameScreen"
         component={GameScreen}
@@ -58,6 +59,11 @@ function RootNavigator() {
         name="NotFound"
         component={NotFoundScreen}
         options={{ title: "Oops!" }}
+      />
+      <Stack.Screen
+        name="GroupScreen"
+        component={GroupScreen}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

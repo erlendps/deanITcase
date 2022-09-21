@@ -25,6 +25,11 @@ const linking: LinkingOptions<RootStackParamList> = {
               GameScreen: 'GameScreen',
             },
           },
+          GroupScreen: {
+            screens: {
+              GroupScreen: 'GroupScreen',
+            },
+          },
         },
       },
       NotFound: '*',
