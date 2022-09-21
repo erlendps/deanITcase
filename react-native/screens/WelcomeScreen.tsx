@@ -14,18 +14,21 @@ export const WelcomeScreen = ({
   }
 
   const [highscores, setHighscores] = useState<number[]>([]);
-  useEffect(() => {
-    if (route.params?.score) {
-      addToHighScoreList(route.params.score);
-    }
-  }, [route.params])
-
   const addToHighScoreList = (newScore: number) => {
     const hs = [...highscores];
     hs.push(newScore);
     hs.sort((a, b) => Number(b) - Number(a));
     setHighscores(hs);
   }
+
+  const [lastTime, setLastTime] = useState<number>(-1);
+  
+  useEffect(() => {
+    if (route.params?.score) addToHighScoreList(route.params.score);
+    if (route.params?.time) setLastTime(route.params.time / 1000);
+  }, [route.params])
+
+  
 
   return (
     <View style={styles.container}>
@@ -34,6 +37,7 @@ export const WelcomeScreen = ({
         onPress={handlePress}
       ></AppButton>
       <View style={styles.highscore}>
+        {lastTime > 0 ? <Text style={styles.text}>Du fullførte på {lastTime} sekunder (+{Math.max(10*(180-lastTime), 0)} poeng)</Text> : <></>}
         <Text style={styles.text}><Text style={{fontWeight: 'bold'}}>Poengtavle</Text>{'\n'}
           {highscores.length ? highscores.slice(0, Math.min(5, highscores.length)).map(
             (v, i) => (i+1).toString() + ". " + v.toString()
@@ -56,6 +60,7 @@ const styles = StyleSheet.create({
     fontSize: TALK_FONT_SIZE,
     fontFamily: 'space-mono',
     color: 'white',
+    textAlign: 'center',
   },
   highscore : {
     margin: 20

@@ -14,6 +14,7 @@ import {
   wrongTexts,
 } from "../constants/Text";
 import { playAlarmSound, playApplause, playWhatsApp } from "../utils/Sounds";
+import { minHeight } from "@mui/system";
 
 export const GameScreen = ({
   navigation,
@@ -29,15 +30,27 @@ export const GameScreen = ({
   const [failedOnThisEmp, setFailedOnThisEmp] = useState(0);
   const [consecutiveNotAName, setConsecutiveNotAName] = useState(0);
   const [itManText, setItManText] = useState("");
+  const [timer, setTimer] = useState(0);
 
   useEffect(() => {
     setRandomEmployee();
   }, [employees]);
 
+  useEffect(() => {
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, [])
+
+  const updateTime = () => {
+    setTimer(prev => prev + 1000);
+  }
+
   const setRandomEmployee = () => {
     if (!employees) return;
     if (employeesLeft <= 0) {
-      navigation.navigate("Welcome", {score: score} );
+      let s = score;
+      s += Math.max(10*(180 - timer/1000), 0);
+      navigation.navigate("Welcome", {score: score, time: timer} );
     }
     
     setEmployeesLeft((count) => count - 1);
@@ -94,7 +107,7 @@ export const GameScreen = ({
 
   return employee ? (
     <View style={styles.container}>
-      <Score score={score} />
+      <Score score={score} time={timer/1000} />
       <ItNerd failed={failedOnThisEmp} text={itManText} />
       <GuessEmployee
         employee={employee as Employee}
