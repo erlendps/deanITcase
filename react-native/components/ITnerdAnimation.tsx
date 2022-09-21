@@ -7,6 +7,7 @@ import {
   Image,
   Easing,
   Dimensions,
+  ScrollView
 } from "react-native";
 import React, { useRef, useState, useEffect } from "react";
 import { flexbox } from "@mui/system";
@@ -51,7 +52,9 @@ export const ItNerd = (props: { failed: number; text?: string }) => {
         resizeMode="cover"
         />
         <View style={styles.speech}>
-        <Text style={styles.speechText}>{props.text}</Text>
+        <ScrollView>
+          <Text style={styles.speechText}>{props.text}</Text>
+        </ScrollView>
         </View>
     </View>
   );

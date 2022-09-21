@@ -3,7 +3,7 @@ import { Dimensions } from 'react-native';
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 export const FONT_SIZE = 38;
-export const TALK_FONT_SIZE = 22;
+export const TALK_FONT_SIZE = 16;
 export default {
   window: {
     width,
