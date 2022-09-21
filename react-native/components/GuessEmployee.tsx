@@ -9,8 +9,9 @@ import { Employee } from "../hooks/useFetchEmployees";
 import { GuessInput } from "./GuessInput";
 import { useEffect, useState } from "react";
 import { isName } from "../hooks/names";
-import { LinearGradient } from 'expo-linear-gradient';
-import Colors from '../constants/Colors'
+import { LinearGradient } from "expo-linear-gradient";
+import Colors from "../constants/Colors";
+import * as Speech from "expo-speech";
 
 export const GuessEmployee = (props: {
   employee: Employee;
@@ -45,12 +46,12 @@ export const GuessEmployee = (props: {
       // Correct guess
       setHint(name());
       props.onCorrect(calculateScore());
-      return true
+      return true;
     }
     // Wrong guess
     if (!isName(guess)) {
-      onMessage(`${guess} is not a name!`)
-      return false
+      onMessage(`${guess} is not a name!`);
+      return false;
     }
     props.onWrong();
     // Wrong guess, but a valid name
@@ -59,7 +60,7 @@ export const GuessEmployee = (props: {
       return hint.slice(0, index) + name()[index] + hint.slice(index + 1);
     });
     setAttempts((attempts) => attempts + 1);
-    return true
+    return true;
   };
 
   const onMessage = (msg: string) => {
@@ -68,11 +69,11 @@ export const GuessEmployee = (props: {
 
   const onReGuess = (guess: string) => {
     props.onReGuess(guess);
-  }
+  };
 
   return (
     <View style={styles.container}>
-      <ImageBackground 
+      <ImageBackground
         style={styles.image}
         key={name()}
         source={{ uri: props.employee.image }}
@@ -80,11 +81,11 @@ export const GuessEmployee = (props: {
       >
         <LinearGradient
           // Background Linear Gradient
-          colors={['transparent', Colors.dark.background]}
+          colors={["transparent", Colors.dark.background]}
           locations={[0.6, 1]}
-          style={{flex: 1}}
+          style={{ flex: 1 }}
         />
-        
+
         <GuessInput
           onInput={onInput}
           secret={name()}
