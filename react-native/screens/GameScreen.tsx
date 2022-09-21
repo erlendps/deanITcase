@@ -14,7 +14,6 @@ import {
   wrongTexts,
 } from "../constants/Text";
 import { playAlarmSound, playApplause, playWhatsApp } from "../utils/Sounds";
-import { minHeight } from "@mui/system";
 
 export const GameScreen = ({
   navigation,

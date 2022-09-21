@@ -1,12 +1,8 @@
 import { StyleSheet, Text, View } from "react-native";
 import { TALK_FONT_SIZE } from "../constants/Layout";
 import Color from "../constants/Colors"
-import { useEffect, useState } from "react";
-import { flexbox } from "@mui/system";
 
 export const Score = (props: { score: number, time: number }) => {
-
-  const [timer, setTimer] = useState(0);
 
   return (
     <View style={styles.score}>
@@ -33,13 +29,13 @@ const styles = StyleSheet.create({
     fontFamily: 'space-mono',
   },
   timer: {
-    backgroundColor: 'rgba(255, 255, 255, 0.85)',
-    width: 64,
-    height: 64,
+    // backgroundColor: 'rgba(255, 255, 255, 0.85)',
+    // width: 60,
+    // height: 60,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 40,
+    // borderRadius: 40,
     marginRight: 20,
   }
 

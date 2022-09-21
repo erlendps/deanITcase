@@ -26,7 +26,6 @@ export const GuessEmployee = (props: {
   const [hint, setHint] = useState("");
   const [attempts, setAttempts] = useState(0);
   const [hintCount, setHintCount] = useState(0);
-
   const name = () => props.employee.name.split(" ")[0].toLowerCase();
   
   useEffect(() => {

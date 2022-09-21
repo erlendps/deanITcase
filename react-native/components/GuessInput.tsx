@@ -1,12 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import {StyleSheet, TextInput, Text, View, Keyboard} from "react-native";
 import { FONT_SIZE } from "../constants/Layout";
+import { useKeyboardHeight } from "../hooks/useKeyboardHeight";
 
 export const GuessInput = (props: {onInput: (guess: string) => boolean, onMessage: (msg: string) => void, secret: string, hint: string, onReGuess: (guess: string) => void}) => {
 
   const [text, setText] = useState('')
   const [prevGuesses, setPrevGuesses] = useState([''])
   const inputRef = useRef<TextInput>(null)
+  const keyboardHeight = useKeyboardHeight();
 
   useEffect(() => {
     setPrevGuesses([])
@@ -48,7 +50,7 @@ export const GuessInput = (props: {onInput: (guess: string) => boolean, onMessag
     };
   }, []);
 
-  const inputStyle = () => StyleSheet.flatten([styles.input, {width: (10 + 0.61 * FONT_SIZE) * props.secret.length + 20, bottom: isKeyboardVisible ? 80 : 10}])
+  const inputStyle = () => StyleSheet.flatten([styles.input, {width: (10 + 0.61 * FONT_SIZE) * props.secret.length + 20, bottom: isKeyboardVisible ? Math.max(keyboardHeight - 140, 80) : 10}])
   const placeholderStyle = () => StyleSheet.flatten([inputStyle(), styles.placeholder])
 
   return (
