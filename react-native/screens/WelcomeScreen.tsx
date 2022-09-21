@@ -43,7 +43,7 @@ export const WelcomeScreen = ({
         <Text style={styles.textBold}>Poengtavle</Text>
 
         {highscores.length ? highscores.slice(0, Math.min(5, highscores.length)).map(
-          (v, i) => <Text style={textStyle(v)}>{(i+1).toString() + ". " + v.toString()}</Text>
+          (v, i) => <Text key={i} style={textStyle(v)}>{(i+1).toString() + ". " + v.toString()}</Text>
           ) : <Text style={styles.text}>Avventer spilling.</Text>}
       </View>
     </View>
