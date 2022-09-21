@@ -2,16 +2,14 @@ import {
   StyleSheet,
   ImageBackground,
   Dimensions,
-  FlatList,
 } from "react-native";
-import { Text, View } from "./Themed";
+import { View } from "./Themed";
 import { Employee } from "../hooks/useFetchEmployees";
 import { GuessInput } from "./GuessInput";
 import { useEffect, useState } from "react";
 import { isName } from "../hooks/names";
 import { LinearGradient } from "expo-linear-gradient";
 import Colors from "../constants/Colors";
-import * as Speech from "expo-speech";
 
 export const GuessEmployee = (props: {
   employee: Employee;

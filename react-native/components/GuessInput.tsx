@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {StyleSheet, TextInput, Text, View, Keyboard} from "react-native";
 import { FONT_SIZE } from "../constants/Layout";
 
@@ -6,9 +6,11 @@ export const GuessInput = (props: {onInput: (guess: string) => boolean, onMessag
 
   const [text, setText] = useState('')
   const [prevGuesses, setPrevGuesses] = useState([''])
+  const inputRef = useRef<TextInput>(null)
 
   useEffect(() => {
     setPrevGuesses([])
+    inputRef.current?.focus()
   }, [props.secret]);
 
   const onSubmit = () => {
@@ -52,7 +54,7 @@ export const GuessInput = (props: {onInput: (guess: string) => boolean, onMessag
   return (
     <View style={styles.view}>
       <Text ellipsizeMode="clip" allowFontScaling={false} numberOfLines={1} style={placeholderStyle()}>{props.hint}</Text>
-      <TextInput allowFontScaling={false} keyboardType="visible-password" underlineColorAndroid="rgba(0,0,0,0)" autoComplete='off' value={text} style={inputStyle()} onChangeText={setText} onSubmitEditing={onSubmit} blurOnSubmit={false} maxLength={props.secret.length}/>
+      <TextInput ref={inputRef} allowFontScaling={false} keyboardType="visible-password" underlineColorAndroid="rgba(0,0,0,0)" autoComplete='off' value={text} style={inputStyle()} onChangeText={setText} onSubmitEditing={onSubmit} blurOnSubmit={false} maxLength={props.secret.length}/>
     </View>
   );
 };
