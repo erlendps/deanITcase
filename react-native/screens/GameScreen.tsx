@@ -7,7 +7,13 @@ import { GuessEmployee } from "../components/GuessEmployee";
 import { Score } from "../components/Score";
 import { ItNerd } from "../components/ITnerdAnimation";
 import { getFiveNames } from "../hooks/names";
-import {consecutiveTexts, correctTexts, invalidTexts, wrongTexts} from "../constants/Text"
+import {
+  consecutiveTexts,
+  correctTexts,
+  invalidTexts,
+  wrongTexts,
+} from "../constants/Text";
+import { playAlarmSound, playApplause, playWhatsApp } from "../utils/Sounds";
 
 export const GameScreen = ({
   navigation,
@@ -18,8 +24,10 @@ export const GameScreen = ({
   const [employee, setEmployee] = useState<Employee>({
     name: "undefined",
     gender: "female",
-    image: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-    originalUrl: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+    image:
+      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    originalUrl:
+      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
   });
 
   const [score, setScore] = useState(0);
@@ -34,8 +42,8 @@ export const GameScreen = ({
 
   const setRandomEmployee = () => {
     if (!employees) return;
-    if (employeesLeft <= 1) navigation.navigate('Welcome')
-    setEmployeesLeft((count) => count - 1)
+    if (employeesLeft <= 1) navigation.navigate("Welcome");
+    setEmployeesLeft((count) => count - 1);
     setEmployee(employees[Math.floor(Math.random() * employees.length)]);
   };
 
@@ -48,38 +56,44 @@ export const GameScreen = ({
     setFailedOnThisEmp(0);
     setConsecutiveNotAName(0);
     setRandomEmployee();
-    setItManText(correctTexts[Math.floor(Math.random()*correctTexts.length)]);
+    setItManText(correctTexts[Math.floor(Math.random() * correctTexts.length)]);
+    playWhatsApp();
   };
 
   const handleWrong = () => {
     setFailedOnThisEmp(failedOnThisEmp + 1);
     setConsecutiveNotAName(0);
-    setItManText(wrongTexts[Math.floor(Math.random()*wrongTexts.length)]);
+    setItManText(wrongTexts[Math.floor(Math.random() * wrongTexts.length)]);
+    playAlarmSound();
   };
 
   const handleConsecutiveFail = (hint: string) => {
-    let newValue = consecutiveNotAName + 1
+    let newValue = consecutiveNotAName + 1;
     if (newValue % 5 === 0) {
       setFailedOnThisEmp(failedOnThisEmp + 1);
-      let newText = consecutiveTexts[Math.floor(Math.random()*consecutiveTexts.length)] 
-      getFiveNames(employee.name.split(" ")[0].length, hint).forEach(name => {
+      let newText =
+        consecutiveTexts[Math.floor(Math.random() * consecutiveTexts.length)];
+      getFiveNames(employee.name.split(" ")[0].length, hint).forEach((name) => {
         newText += name + ", ";
-      })
+      });
       setItManText(newText.slice(0, newText.length - 2));
     } else {
-      setItManText(invalidTexts[Math.floor(Math.random()*invalidTexts.length)])
+      setItManText(
+        invalidTexts[Math.floor(Math.random() * invalidTexts.length)]
+      );
     }
     setConsecutiveNotAName(newValue);
+    playApplause();
   };
 
   const handleReGuess = (guess: string) => {
     setItManText(`Du har jo allerede gjettet ${guess}, finn på noe nytt!`);
-  }
+  };
 
   return employee ? (
     <View style={styles.container}>
       <Score score={score} />
-      <ItNerd failed={failedOnThisEmp} text={itManText}/>
+      <ItNerd failed={failedOnThisEmp} text={itManText} />
       <GuessEmployee
         employee={employee as Employee}
         onCorrect={handleCorrect}

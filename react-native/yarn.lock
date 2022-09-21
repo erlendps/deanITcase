@@ -3755,6 +3755,86 @@ expo-modules-core@0.9.2:
     compare-versions "^3.4.0"
     invariant "^2.2.4"
 
+expo-av@~11.2.3:
+  version "11.2.3"
+  resolved "https://registry.yarnpkg.com/expo-av/-/expo-av-11.2.3.tgz#254242dae76e3cd60ef9d9c33618e4a12d37aa33"
+  integrity sha512-ptTe96s33Ct0eOsOmNTvtaWFx4B0SDkQmDfPbiuX/C2afqbLQf8geEopw7BRO8ZZl7Qe3qBMH6YLHXKTkZkTyQ==
+  dependencies:
+    "@expo/config-plugins" "^4.0.14"
+
+expo-constants@~13.1.0, expo-constants@~13.1.1:
+  version "13.1.1"
+  resolved "https://registry.npmjs.org/expo-constants/-/expo-constants-13.1.1.tgz"
+  integrity sha512-QRVHrrMCLenBzWZ8M+EvCXM+jjdQzFMW27YQHRac3SGGoND1hWr81scOmGwlFo2wLZrYXm8HcYt1E6ry3IIwrA==
+  dependencies:
+    "@expo/config" "^6.0.14"
+    uuid "^3.3.2"
+
+expo-error-recovery@~3.1.0:
+  version "3.1.0"
+  resolved "https://registry.npmjs.org/expo-error-recovery/-/expo-error-recovery-3.1.0.tgz"
+  integrity sha512-qUxCW7kPB6AVX5h3ZPVnxw4LLZWsRwAPBtRDlh1UDN7GWZ+CQN1SNk0w0BPotjNtSlXEZSFDqKqtoDDAUYjNmg==
+
+expo-file-system@~14.0.0:
+  version "14.0.0"
+  resolved "https://registry.npmjs.org/expo-file-system/-/expo-file-system-14.0.0.tgz"
+  integrity sha512-Asva7ehLUq/PIem6Y+/OQvoIqhFqYDd7l4l49yDRDgLSbK2I7Fr8qGhDeDpnUXrMVamg2uwt9zRGhyrjFNRhVw==
+  dependencies:
+    "@expo/config-plugins" "^4.0.14"
+    uuid "^3.4.0"
+
+expo-font@~10.1.0:
+  version "10.1.0"
+  resolved "https://registry.npmjs.org/expo-font/-/expo-font-10.1.0.tgz"
+  integrity sha512-vmhzpE95Ym4iOj8IELof+C/3Weert2B3LyxV5rBjGosjzBdov+o+S6b5mN7Yc9kyEGykwB6k7npL45X3hFYDQA==
+  dependencies:
+    fontfaceobserver "^2.1.0"
+
+expo-keep-awake@~10.1.1:
+  version "10.1.1"
+  resolved "https://registry.npmjs.org/expo-keep-awake/-/expo-keep-awake-10.1.1.tgz"
+  integrity sha512-9zC0sdhQljUeMr2yQ7o4kzEZXVAy82fFOAZE1+TwPL7qR0b0sphe7OJ5T1GX1qLcwuVaJ8YewaPoLSHRk79+Rg==
+
+expo-linking@~3.1.0:
+  version "3.1.0"
+  resolved "https://registry.npmjs.org/expo-linking/-/expo-linking-3.1.0.tgz"
+  integrity sha512-fZAUjQJThOtBDAdy/wB0bpqCjnGhiEJ+AkWqOQMCrNsd8kVowdA0xNnD1EBk7nESw6/NCg/Iy1lt5smaA21+rA==
+  dependencies:
+    expo-constants "~13.1.0"
+    invariant "^2.2.4"
+    qs "^6.9.1"
+    url-parse "^1.5.9"
+
+expo-modules-autolinking@0.8.1:
+  version "0.8.1"
+  resolved "https://registry.npmjs.org/expo-modules-autolinking/-/expo-modules-autolinking-0.8.1.tgz"
+  integrity sha512-S8qfaXCv//7tQWV9M+JKx3CF7ypYhDdSUbkUQdaVO/r8D76/aRTArY/aRw1yEfaAOzyK8C8diDToV1itl51DfQ==
+  dependencies:
+    chalk "^4.1.0"
+    commander "^7.2.0"
+    fast-glob "^3.2.5"
+    find-up "^5.0.0"
+    fs-extra "^9.1.0"
+
+expo-modules-autolinking@0.9.0:
+  version "0.9.0"
+  resolved "https://registry.npmjs.org/expo-modules-autolinking/-/expo-modules-autolinking-0.9.0.tgz"
+  integrity sha512-brczklrHpWood7H2C4MjBfUD85NAyjotEhYs7hnHRtbnVgwwzXeAveDje/19kLaK8W40hvUN0LdBVxkZN3Hw6g==
+  dependencies:
+    chalk "^4.1.0"
+    commander "^7.2.0"
+    fast-glob "^3.2.5"
+    find-up "^5.0.0"
+    fs-extra "^9.1.0"
+
+expo-modules-core@0.9.2:
+  version "0.9.2"
+  resolved "https://registry.npmjs.org/expo-modules-core/-/expo-modules-core-0.9.2.tgz"
+  integrity sha512-p/C0GJxFIIDGwmrWi70Q0ggfsgeUFS25ZkkBgoaHT7MVgiMjlKA/DCC3D6ZUkHl/JlzUm0aTftIGS8LWXsnZBw==
+  dependencies:
+    compare-versions "^3.4.0"
+    invariant "^2.2.4"
+
 expo-splash-screen@~0.15.1:
   version "0.15.1"
   resolved "https://registry.npmjs.org/expo-splash-screen/-/expo-splash-screen-0.15.1.tgz"
