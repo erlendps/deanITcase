@@ -9,6 +9,10 @@ export const correctTexts = [
   "Du er jo helt gæren!",
   "Har du pugget?"
 ]
+export const invalidTexts = [
+  "Det der er ikke et navn en gang.",
+  "Gjett i det minste noe folk faktisk heter, da."
+]
 
 export const wrongTexts = [
   "Haha! Kan du ikke navnet på kollegaen din?",

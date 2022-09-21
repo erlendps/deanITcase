@@ -7,7 +7,7 @@ import { GuessEmployee } from "../components/GuessEmployee";
 import { Score } from "../components/Score";
 import { ItNerd } from "../components/ITnerdAnimation";
 import { getFiveNames } from "../hooks/names";
-import {consecutiveTexts, correctTexts, wrongTexts} from "../constants/Text"
+import {consecutiveTexts, correctTexts, invalidTexts, wrongTexts} from "../constants/Text"
 
 export const GameScreen = ({
   navigation,
@@ -66,9 +66,15 @@ export const GameScreen = ({
         newText += name + ", ";
       })
       setItManText(newText.slice(0, newText.length - 2));
+    } else {
+      setItManText(invalidTexts[Math.floor(Math.random()*invalidTexts.length)])
     }
     setConsecutiveNotAName(newValue);
   };
+
+  const handleReguess = (guess: string) => {
+    setItManText(`Du har jo allerede gjettet ${guess}, finn på noe nytt!`);
+  }
 
   return employee ? (
     <View style={styles.container}>
@@ -79,6 +85,7 @@ export const GameScreen = ({
         onCorrect={handleCorrect}
         onWrong={handleWrong}
         onConsecutiveFail={handleConsecutiveFail}
+        onReguess={handleReguess}
       ></GuessEmployee>
     </View>
   ) : (

@@ -17,6 +17,7 @@ export const GuessEmployee = (props: {
   onCorrect: (scoreToAdd: number) => void;
   onWrong: () => void;
   onConsecutiveFail: (hint: string) => void;
+  onReguess: (guess: string) => void;
 }) => {
   const [revealOrder, setRevealOrder] = useState([0]);
   const [hint, setHint] = useState("");
@@ -41,7 +42,6 @@ export const GuessEmployee = (props: {
     return score;
   };
 
-  // returns true if text should be cleared
   const onInput = (guess: string) => {
     if (guess.toLowerCase() == name()) {
       // Correct guess
@@ -50,24 +50,28 @@ export const GuessEmployee = (props: {
       return true
     }
     // Wrong guess
-    props.onWrong();
     if (!isName(guess)) {
       onMessage(`${guess} is not a name!`)
       return false
     }
+    props.onWrong();
     // Wrong guess, but a valid name
     const index = revealOrder[attempts];
     setHint((hint) => {
       return hint.slice(0, index) + name()[index] + hint.slice(index + 1);
     });
     setAttempts((attempts) => attempts + 1);
-    return true
+    return false
   };
 
   const onMessage = (msg: string) => {
     setMessages((messages) => [msg, ...messages]);
     props.onConsecutiveFail(hint);
   };
+
+  const onReguess = (guess: string) => {
+    props.onReguess(guess);
+  }
 
   return (
     <View style={styles.container}>
@@ -89,12 +93,13 @@ export const GuessEmployee = (props: {
           secret={name()}
           hint={hint}
           onMessage={onMessage}
+          onReguess={onReguess}
         />
       </ImageBackground>
-      <FlatList
+      {/*<FlatList
         data={messages}
         renderItem={({ item }) => <Text style={styles.message}>{item}</Text>}
-      ></FlatList>
+        ></FlatList>*/}
     </View>
   );
 };

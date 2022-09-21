@@ -49,11 +49,15 @@ export const ItNerd = (props: { failed: number; text?: string }) => {
         }}
         resizeMode="cover"
         />
+        
+        
         <View style={styles.speech}>
-        <ScrollView>
-          <Text style={styles.speechText}>{props.text}</Text>
-        </ScrollView>
+          <ScrollView contentContainerStyle={styles.scroller}>
+            <Text style={styles.speechText}>{props.text ? props.text : "JEG ELSKER GJETTELEKEN!"}</Text>
+          </ScrollView>
         </View>
+        
+        
     </View>
   );
 };
@@ -74,6 +78,10 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  scroller : {
+    flexGrow: 1,
+    justifyContent: 'center',
   },
   speechText: {
     padding: 10,
